@@ -51,13 +51,13 @@ namespace TokenApp.Controllers
 
         private ClaimsIdentity GetIdentity(string username, string password)
         {
-            Doctor doctor = _context.Doctor.FirstOrDefault(p => p.Login == username && p.Password == password);
-            if (doctor != null) {
+            Researcher Researcher = _context.Researcher.FirstOrDefault(p => p.Login == username && p.Password == password);
+            if (Researcher != null) {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, doctor.Name),
-                    new Claim("id", doctor.Id.ToString()),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, "Doctor")
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, Researcher.Name),
+                    new Claim("id", Researcher.Id.ToString()),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, "Researcher")
 
                 };
                 ClaimsIdentity claimsIdentity =

@@ -1,10 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "Persons";
-    var model = Model as List<MedicalCommon.Person>;
+    ViewData["Title"] = "Participants";
+    var model = Model as List<MedicalCommon.Participant>;
 }
 
 <div class="text-center">
-    <h1 class="display-4">Persons</h1>
+    <h1 class="display-4">Participants</h1>
     <table style="width:100%; border:1px solid black;">
         <tr>
             <td>Name</td>
@@ -28,7 +28,7 @@
         }
     </table>
     
-    <form action="@Url.ActionLink(controller:"Person", action: "Create")" method="post">
+    <form action="@Url.ActionLink(controller:"Participant", action: "Create")" method="post">
         <table style="width:100%;">
             <tr>
                 <td>Name</td>

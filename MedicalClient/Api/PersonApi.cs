@@ -9,51 +9,51 @@ namespace IO.Swagger.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IPersonApi
+    public interface IParticipantApi
     {
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Person</returns>
-        Person PersonDeletePerson (string id);
+        /// <returns>Participant</returns>
+        Participant ParticipantDeleteParticipant (string id);
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Person</returns>
-        Person PersonGetPerson (string id);
+        /// <returns>Participant</returns>
+        Participant ParticipantGetParticipant (string id);
         /// <summary>
         ///  
         /// </summary>
-        /// <returns>List&lt;Person&gt;</returns>
-        List<Person> PersonGetPersonAll ();
+        /// <returns>List&lt;Participant&gt;</returns>
+        List<Participant> ParticipantGetParticipantAll ();
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="person"></param>
-        /// <returns>Person</returns>
-        Person PersonPostPerson (Person person);
+        /// <param name="Participant"></param>
+        /// <returns>Participant</returns>
+        Participant ParticipantPostParticipant (Participant Participant);
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="person"></param>
+        /// <param name="Participant"></param>
         /// <returns>System.IO.Stream</returns>
-        System.IO.Stream PersonPutPerson (string id, Person person);
+        System.IO.Stream ParticipantPutParticipant (string id, Participant Participant);
     }
   
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class PersonApi : IPersonApi
+    public class ParticipantApi : IParticipantApi
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PersonApi"/> class.
+        /// Initializes a new instance of the <see cref="ParticipantApi"/> class.
         /// </summary>
         /// <param name="apiClient"> an instance of ApiClient (optional)</param>
         /// <returns></returns>
-        public PersonApi(ApiClient apiClient = null)
+        public ParticipantApi(ApiClient apiClient = null)
         {
             if (apiClient == null) // use the default one in Configuration
                 this.ApiClient = Configuration.DefaultApiClient; 
@@ -62,10 +62,10 @@ namespace IO.Swagger.Api
         }
     
         /// <summary>
-        /// Initializes a new instance of the <see cref="PersonApi"/> class.
+        /// Initializes a new instance of the <see cref="ParticipantApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public PersonApi(String basePath)
+        public ParticipantApi(String basePath)
         {
             this.ApiClient = new ApiClient(basePath);
         }
@@ -100,15 +100,15 @@ namespace IO.Swagger.Api
         ///  
         /// </summary>
         /// <param name="id"></param> 
-        /// <returns>Person</returns>            
-        public Person PersonDeletePerson (string id)
+        /// <returns>Participant</returns>            
+        public Participant ParticipantDeleteParticipant (string id)
         {
             
             // verify the required parameter 'id' is set
-            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling PersonDeletePerson");
+            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling ParticipantDeleteParticipant");
             
     
-            var path = "/api/Person/{id}";
+            var path = "/api/Participant/{id}";
             path = path.Replace("{format}", "json");
             path = path.Replace("{" + "id" + "}", ApiClient.ParameterToString(id));
     
@@ -126,26 +126,26 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.DELETE, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling PersonDeletePerson: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ParticipantDeleteParticipant: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling PersonDeletePerson: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling ParticipantDeleteParticipant: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (Person) ApiClient.Deserialize(response.Content, typeof(Person), response.Headers);
+            return (Participant) ApiClient.Deserialize(response.Content, typeof(Participant), response.Headers);
         }
     
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param> 
-        /// <returns>Person</returns>            
-        public Person PersonGetPerson (string id)
+        /// <returns>Participant</returns>            
+        public Participant ParticipantGetParticipant (string id)
         {
             
             // verify the required parameter 'id' is set
-            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling PersonGetPerson");
+            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling ParticipantGetParticipant");
             
     
-            var path = "/api/Person/{id}";
+            var path = "/api/Participant/{id}";
             path = path.Replace("{format}", "json");
             path = path.Replace("{" + "id" + "}", ApiClient.ParameterToString(id));
     
@@ -163,20 +163,20 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling PersonGetPerson: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ParticipantGetParticipant: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling PersonGetPerson: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling ParticipantGetParticipant: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (Person) ApiClient.Deserialize(response.Content, typeof(Person), response.Headers);
+            return (Participant) ApiClient.Deserialize(response.Content, typeof(Participant), response.Headers);
         }
     
         /// <summary>
         ///  
         /// </summary>
-        /// <returns>List&lt;Person&gt;</returns>            
-        public List<Person> PersonGetPersonAll ()
+        /// <returns>List&lt;Participant&gt;</returns>            
+        public List<Participant> ParticipantGetParticipantAll ()
         {
-            var path = "/api/Person";
+            var path = "/api/Participant";
             path = path.Replace("{format}", "json");
                 
             var queryParams = new Dictionary<String, String>();
@@ -193,26 +193,26 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling PersonGetPersonAll: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ParticipantGetParticipantAll: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling PersonGetPersonAll: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling ParticipantGetParticipantAll: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (List<Person>) ApiClient.Deserialize(response.Content, typeof(List<Person>), response.Headers);
+            return (List<Participant>) ApiClient.Deserialize(response.Content, typeof(List<Participant>), response.Headers);
         }
     
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="person"></param> 
-        /// <returns>Person</returns>            
-        public Person PersonPostPerson (Person person)
+        /// <param name="Participant"></param> 
+        /// <returns>Participant</returns>            
+        public Participant ParticipantPostParticipant (Participant Participant)
         {
             
-            // verify the required parameter 'person' is set
-            if (person == null) throw new ApiException(400, "Missing required parameter 'person' when calling PersonPostPerson");
+            // verify the required parameter 'Participant' is set
+            if (Participant == null) throw new ApiException(400, "Missing required parameter 'Participant' when calling ParticipantPostParticipant");
             
     
-            var path = "/api/Person";
+            var path = "/api/Participant";
             path = path.Replace("{format}", "json");
                 
             var queryParams = new Dictionary<String, String>();
@@ -221,7 +221,7 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-                                                postBody = ApiClient.Serialize(person); // http body (model) parameter
+                                                postBody = ApiClient.Serialize(Participant); // http body (model) parameter
     
             // authentication setting, if any
             String[] authSettings = new String[] {  };
@@ -230,30 +230,30 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling PersonPostPerson: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ParticipantPostParticipant: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling PersonPostPerson: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling ParticipantPostParticipant: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (Person) ApiClient.Deserialize(response.Content, typeof(Person), response.Headers);
+            return (Participant) ApiClient.Deserialize(response.Content, typeof(Participant), response.Headers);
         }
     
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param> 
-        /// <param name="person"></param> 
+        /// <param name="Participant"></param> 
         /// <returns>System.IO.Stream</returns>            
-        public System.IO.Stream PersonPutPerson (string id, Person person)
+        public System.IO.Stream ParticipantPutParticipant (string id, Participant Participant)
         {
             
             // verify the required parameter 'id' is set
-            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling PersonPutPerson");
+            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling ParticipantPutParticipant");
             
-            // verify the required parameter 'person' is set
-            if (person == null) throw new ApiException(400, "Missing required parameter 'person' when calling PersonPutPerson");
+            // verify the required parameter 'Participant' is set
+            if (Participant == null) throw new ApiException(400, "Missing required parameter 'Participant' when calling ParticipantPutParticipant");
             
     
-            var path = "/api/Person/{id}";
+            var path = "/api/Participant/{id}";
             path = path.Replace("{format}", "json");
             path = path.Replace("{" + "id" + "}", ApiClient.ParameterToString(id));
     
@@ -263,7 +263,7 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-                                                postBody = ApiClient.Serialize(person); // http body (model) parameter
+                                                postBody = ApiClient.Serialize(Participant); // http body (model) parameter
     
             // authentication setting, if any
             String[] authSettings = new String[] {  };
@@ -272,9 +272,9 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.PUT, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling PersonPutPerson: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ParticipantPutParticipant: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling PersonPutPerson: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling ParticipantPutParticipant: " + response.ErrorMessage, response.ErrorMessage);
     
             return (System.IO.Stream) ApiClient.Deserialize(response.Content, typeof(System.IO.Stream), response.Headers);
         }

@@ -1,9 +1,9 @@
 ﻿namespace MedicalWebService.Model
 {
-    public enum PersonRole
+    public enum ParticipantRole
     {
         Patient,
-        Doctor,
+        Researcher,
         Admin
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace MedicalCommon
 {
-    public enum PersonRole
+    public enum ParticipantRole
     {
         Patient,
-        Doctor,
+        Researcher,
         Admin
     }
 }

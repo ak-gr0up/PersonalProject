@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210214191912_Doctor.cs" />
-    <Compile Remove="Migrations\20210214191912_Doctor.Designer.cs" />
-    <Compile Remove="Migrations\20210214192716_Doctor.cs" />
-    <Compile Remove="Migrations\20210214192716_Doctor.Designer.cs" />
+    <Compile Remove="Migrations\20210214191912_Researcher.cs" />
+    <Compile Remove="Migrations\20210214191912_Researcher.Designer.cs" />
+    <Compile Remove="Migrations\20210214192716_Researcher.cs" />
+    <Compile Remove="Migrations\20210214192716_Researcher.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

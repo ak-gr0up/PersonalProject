@@ -8,15 +8,15 @@ namespace MedicalApp1
 {
     public partial class MainPage : ContentPage
     {
-        public IList<Person> Persons { get; set; }
+        public IList<Participant> Participants { get; set; }
 
         public MainPage()
         {
             InitializeComponent();
 
-            Persons = new List <Person>();
-            PersonApi api = new PersonApi();
-            Persons = api.PersonGetPersonAll();
+            Participants = new List <Participant>();
+            ParticipantApi api = new ParticipantApi();
+            Participants = api.ParticipantGetParticipantAll();
 
             BindingContext = this;
         }
@@ -25,7 +25,7 @@ namespace MedicalApp1
         {
             await Navigation.PushAsync(new Page1
             {
-                BindingContext = new Person()
+                BindingContext = new Participant()
             });
         }
 
@@ -33,10 +33,10 @@ namespace MedicalApp1
         {
             InitializeComponent();
 
-            Persons = new List<Person>();
-            PersonApi api = new PersonApi();
-            Persons = api.PersonGetPersonAll();
-            Persons.Add(new Person
+            Participants = new List<Participant>();
+            ParticipantApi api = new ParticipantApi();
+            Participants = api.ParticipantGetParticipantAll();
+            Participants.Add(new Participant
             {
                 Name = "lorem",
                 Surname = "ispum"

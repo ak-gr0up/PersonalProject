@@ -20,10 +20,10 @@ namespace MedicalApp1
         }
         public async void OnDoneClicked(object sender, EventArgs e)
         {
-            PersonApi api = new PersonApi();
+            ParticipantApi api = new ParticipantApi();
             Enum.TryParse(gender.Text, out Gender gender_in);
-            Enum.TryParse(role.Text, out PersonRole role_in);
-            var person = api.PersonPostPerson(new Person()
+            Enum.TryParse(role.Text, out ParticipantRole role_in);
+            var Participant = api.ParticipantPostParticipant(new Participant()
             {
                 Id = Guid.NewGuid(),
                 Name = name.Text,

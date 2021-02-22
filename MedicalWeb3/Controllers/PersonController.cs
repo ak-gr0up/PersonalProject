@@ -8,21 +8,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MedicalWeb3.Controllers
 {
-    public class PersonController : Controller
+    public class ParticipantController : Controller
     {
         [HttpGet]
         public IActionResult Index()
         {
-            PersonApi api = new PersonApi();
-            var model = api.PersonGetPersonAll(); 
+            ParticipantApi api = new ParticipantApi();
+            var model = api.ParticipantGetParticipantAll(); 
             return View(model);
         }
 
         [HttpPost]
         public IActionResult Create(string name, string surname, string gender, string role, string login)
         {
-            PersonApi api = new PersonApi();
-            var person = api.PersonPostPerson(new Person() {
+            ParticipantApi api = new ParticipantApi();
+            var Participant = api.ParticipantPostParticipant(new Participant() {
                 Id = Guid.NewGuid(),
                 Name = name,
                 Surname = surname,
