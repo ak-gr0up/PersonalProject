@@ -1,0 +1,14 @@
+C:\Users\Dima\source\project\suspicious\suspicious\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\Dima\source\project\suspicious\suspicious\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\Dima\source\project\suspicious\suspicious\obj\Debug\netstandard2.0\suspicious.AssemblyInfoInputs.cache
+C:\Users\Dima\source\project\suspicious\suspicious\obj\Debug\netstandard2.0\suspicious.AssemblyInfo.cs
+C:\Users\Dima\source\project\suspicious\suspicious\obj\Debug\netstandard2.0\suspicious.csproj.CoreCompileInputs.cache
+C:\Users\Dima\source\project\suspicious\suspicious\bin\Debug\netstandard2.0\suspicious.deps.json
+C:\Users\Dima\source\project\suspicious\suspicious\bin\Debug\netstandard2.0\suspicious.dll
+C:\Users\Dima\source\project\suspicious\suspicious\bin\Debug\netstandard2.0\ref\suspicious.dll
+C:\Users\Dima\source\project\suspicious\suspicious\bin\Debug\netstandard2.0\suspicious.pdb
+C:\Users\Dima\source\project\suspicious\suspicious\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\Dima\source\project\suspicious\suspicious\obj\Debug\netstandard2.0\suspicious.dll
+C:\Users\Dima\source\project\suspicious\suspicious\obj\Debug\netstandard2.0\ref\suspicious.dll
+C:\Users\Dima\source\project\suspicious\suspicious\obj\Debug\netstandard2.0\suspicious.pdb
+C:\Users\Dima\source\project\suspicious\suspicious\obj\Debug\netstandard2.0\suspicious.csprojAssemblyReference.cache

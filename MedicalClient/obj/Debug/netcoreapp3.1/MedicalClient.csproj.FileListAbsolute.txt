@@ -1,0 +1,12 @@
+C:\Users\Dima\source\project\MedicalClient\bin\Debug\netcoreapp3.1\MedicalClient.deps.json
+C:\Users\Dima\source\project\MedicalClient\bin\Debug\netcoreapp3.1\MedicalClient.dll
+C:\Users\Dima\source\project\MedicalClient\obj\Debug\netcoreapp3.1\MedicalClient.csprojAssemblyReference.cache
+C:\Users\Dima\source\project\MedicalClient\obj\Debug\netcoreapp3.1\MedicalClient.AssemblyInfoInputs.cache
+C:\Users\Dima\source\project\MedicalClient\obj\Debug\netcoreapp3.1\MedicalClient.AssemblyInfo.cs
+C:\Users\Dima\source\project\MedicalClient\bin\Debug\netcoreapp3.1\MedicalCommon.dll
+C:\Users\Dima\source\project\MedicalClient\bin\Debug\netcoreapp3.1\MedicalCommon.pdb
+C:\Users\Dima\source\project\MedicalClient\obj\Debug\netcoreapp3.1\MedicalClient.csproj.CopyComplete
+C:\Users\Dima\source\project\MedicalClient\bin\Debug\netcoreapp3.1\MedicalClient.pdb
+C:\Users\Dima\source\project\MedicalClient\obj\Debug\netcoreapp3.1\MedicalClient.csproj.CoreCompileInputs.cache
+C:\Users\Dima\source\project\MedicalClient\obj\Debug\netcoreapp3.1\MedicalClient.dll
+C:\Users\Dima\source\project\MedicalClient\obj\Debug\netcoreapp3.1\MedicalClient.pdb

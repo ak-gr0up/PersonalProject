@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ul+jZmuYW8F6mEYMkDXI63p88GcC2/qYh5GPpLSoV6YvHZiDTllPrZ/HvjoBSKgyhhE/HwF6RgmTB5fclJ9VkQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Dima\\source\\project\\MedicalClient\\MedicalClient.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dima\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Dima\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Dima\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Dima\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512"
+  ],
+  "logs": []
+}

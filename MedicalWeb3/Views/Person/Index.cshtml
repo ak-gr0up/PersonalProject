@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Persons";
+    var model = Model as List<MedicalCommon.Person>;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Persons</h1>
+    <table style="width:100%; border:1px solid black;">
+        <tr>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Gender</td>
+            <td>Role</td>
+            <td>BirthDate</td>
+            <td>Login</td>
+            <td>Id</td>
+        </tr>
+        @foreach (var user in model)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Surname</td>
+                <td>@user.Gender</td>
+                <td>@user.BirthDate</td>
+                <td>@user.Login</td>
+                <td>@user.Id</td>
+            </tr>
+        }
+    </table>
+    
+    <form action="@Url.ActionLink(controller:"Person", action: "Create")" method="post">
+        <table style="width:100%;">
+            <tr>
+                <td>Name</td>
+                <td>
+                    <input type="text" name="Name" />
+                </td>
+            </tr>
+            <tr>
+                <td>Surname</td>
+                <td><input type="text" name="Surname" /></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="text" name="Gender" /></td>
+            </tr>
+            <tr>
+                <td>Role</td>
+                <td><input type="text" name="Role" /></td>
+            </tr>
+            <tr>
+                <td>Login</td>
+                <td><input type="text" name="Login" /></td>
+            </tr>
+        </table>
+        <input type="submit" />
+    </form>
+</div>

@@ -1,0 +1,9 @@
+C:\Users\Dima\source\project\MedicalCommon\bin\Debug\netcoreapp3.1\MedicalCommon.deps.json
+C:\Users\Dima\source\project\MedicalCommon\bin\Debug\netcoreapp3.1\MedicalCommon.dll
+C:\Users\Dima\source\project\MedicalCommon\bin\Debug\netcoreapp3.1\MedicalCommon.pdb
+C:\Users\Dima\source\project\MedicalCommon\obj\Debug\netcoreapp3.1\MedicalCommon.csprojAssemblyReference.cache
+C:\Users\Dima\source\project\MedicalCommon\obj\Debug\netcoreapp3.1\MedicalCommon.AssemblyInfoInputs.cache
+C:\Users\Dima\source\project\MedicalCommon\obj\Debug\netcoreapp3.1\MedicalCommon.AssemblyInfo.cs
+C:\Users\Dima\source\project\MedicalCommon\obj\Debug\netcoreapp3.1\MedicalCommon.csproj.CoreCompileInputs.cache
+C:\Users\Dima\source\project\MedicalCommon\obj\Debug\netcoreapp3.1\MedicalCommon.dll
+C:\Users\Dima\source\project\MedicalCommon\obj\Debug\netcoreapp3.1\MedicalCommon.pdb

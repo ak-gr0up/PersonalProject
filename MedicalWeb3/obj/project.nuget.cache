@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "21BLCQuxDfVZkRIRRAIumsCS/rRALPHfstm5RN4cQX+3QNOzbnOcCiLux3FzFsgdEzu/EdBZBsgeZsn6PlXVzg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Dima\\source\\project\\MedicalWeb3\\MedicalWeb3.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dima\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Dima\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512"
+  ],
+  "logs": []
+}
