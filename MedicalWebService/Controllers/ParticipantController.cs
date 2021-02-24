@@ -37,9 +37,8 @@ namespace MedicalWebService.Controllers
         [Authorize(Roles = "Participant")]
         public async Task<ActionResult<Participant>> GetParticipantMe()
         {
-            var id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
-            var guid = Guid.Parse(id);
-            var Participant = await _context.Participant.FindAsync(guid);
+            Guid id = GetResearcherId();
+            var Participant = await _context.Participant.FindAsync(id);
 
             if (Participant == null)
             {
@@ -47,6 +46,13 @@ namespace MedicalWebService.Controllers
             }
 
             return Participant;
+        }
+
+        private Guid GetResearcherId()
+        {
+            var id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+            var guid = Guid.Parse(id);
+            return guid;
         }
 
         // PUT: api/Participant/5
@@ -87,12 +93,15 @@ namespace MedicalWebService.Controllers
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         [Authorize(Roles = "Researcher")]
-        public async Task<ActionResult<Participant>> PostParticipant(Participant Participant)
+        public async Task<ActionResult<Participant>> PostParticipant(Participant participant)
         {
-            _context.Participant.Add(Participant);
+            _context.Participant.Add(participant);
+            if (participant.Id == Guid.Empty)
+                participant.Id = Guid.NewGuid();
+            participant.ResearcherId = GetResearcherId();
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetParticipant", new { id = Participant.Id }, Participant);
+            return participant;
         }
 
         // DELETE: api/Participant/5
@@ -100,16 +109,16 @@ namespace MedicalWebService.Controllers
         [Authorize(Roles = "Researcher")]
         public async Task<ActionResult<Participant>> DeleteParticipant(Guid id)
         {
-            var Participant = await _context.Participant.FindAsync(id);
-            if (Participant == null)
+            var participant = await _context.Participant.FindAsync(id);
+            if (participant == null)
             {
                 return NotFound();
             }
 
-            _context.Participant.Remove(Participant);
+            _context.Participant.Remove(participant);
             await _context.SaveChangesAsync();
 
-            return Participant;
+            return participant;
         }
 
         [Authorize(Roles = "Researcher")]

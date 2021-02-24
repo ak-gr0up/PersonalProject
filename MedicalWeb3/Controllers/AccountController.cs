@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MedicalClient;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RestSharp;
 
 namespace MedicalWeb3.Controllers
 {
@@ -19,15 +21,21 @@ namespace MedicalWeb3.Controllers
         public async Task<IActionResult> Register(string name, string surname, string login, string password)
         {
             ResearcherClient api = new ResearcherClient();
-            var researcher = await api.PostResearcherAsync(new Researcher()
+            try
             {
-                Id = Guid.NewGuid(),
-                Name = name,
-                Surname = surname,
-                Login = login,
-                Password = password
-            });
-
+                var researcher = await api.PostResearcherAsync(new Researcher()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = name,
+                    Surname = surname,
+                    Login = login,
+                    Password = password
+                });
+            }
+            catch
+            {
+                return View(model: "This login is already registered");
+            }
             return View("Registered");
         }
 
@@ -44,13 +52,16 @@ namespace MedicalWeb3.Controllers
             try
             {
                 var response = await api.TokenAsync(login, password);
+                var option = new CookieOptions();
+                option.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Append("token", response, option);
             }
             catch
             {
                 return View(model:"Incorrect login or password");
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), "Participant");
         }
 
     }

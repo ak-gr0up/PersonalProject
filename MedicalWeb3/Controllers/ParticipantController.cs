@@ -12,16 +12,16 @@ namespace MedicalWeb3.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            ParticipantClient api = new ParticipantClient();
+            ParticipantClient api = new ParticipantClient(Request.Cookies["token"]);
             var model = await api.GetParticipantAsync(); 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Create(string name, string surname, string gender, string role, string login)
+        public async Task<IActionResult> Create(string name, string surname, string gender, string role, string login)
         {
-            ParticipantClient api = new ParticipantClient();
-            var Participant = api.PostParticipantAsync(new Participant() {
+            ParticipantClient api = new ParticipantClient(Request.Cookies["token"]);
+            var Participant = await api.PostParticipantAsync(new Participant() {
                 Id = Guid.NewGuid(),
                 Name = name,
                 Surname = surname,

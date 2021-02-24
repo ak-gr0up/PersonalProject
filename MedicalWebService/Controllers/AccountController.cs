@@ -21,7 +21,7 @@ namespace TokenApp.Controllers
         }
 
         [HttpPost("/tokenResearcher")]
-        public IActionResult Token(string username, string password)
+        public ActionResult<string> Token(string username, string password)
         {
             var identity = GetResearcherIdentity(username, password);
             if (identity == null)
@@ -40,13 +40,7 @@ namespace TokenApp.Controllers
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var response = new
-            {
-                access_token = encodedJwt,
-                username = identity.Name
-            };
-
-            return Json(response);
+            return encodedJwt;
         }
 
         private ClaimsIdentity GetResearcherIdentity(string username, string password)
@@ -71,7 +65,7 @@ namespace TokenApp.Controllers
         }
 
         [HttpPost("/tokenParticipant")]
-        public IActionResult TokenParticipant(string username)
+        public ActionResult<string> TokenParticipant(string username)
         {
             var identity = GetParticipantIdentity(username);
             if (identity == null)
@@ -90,13 +84,7 @@ namespace TokenApp.Controllers
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var response = new
-            {
-                access_token = encodedJwt,
-                username = identity.Name
-            };
-
-            return Json(response);
+            return encodedJwt;
         }
 
         private ClaimsIdentity GetParticipantIdentity(string username)
