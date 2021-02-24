@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using Index = Microsoft.EntityFrameworkCore.Metadata.Internal.Index;
 
 namespace MedicalWebService.Model
 {
+    [Index(nameof(Login), IsUnique = true)]
     public class Researcher
     {
         [Key]

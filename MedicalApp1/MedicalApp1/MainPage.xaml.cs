@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Xamarin.Forms;
-using MedicalCommon;
-using IO.Swagger.Api;
+using MedicalClient;
 using System;
 
 namespace MedicalApp1
@@ -15,7 +14,7 @@ namespace MedicalApp1
             InitializeComponent();
 
             Participants = new List <Participant>();
-            ParticipantApi api = new ParticipantApi();
+            ParticipantClient api = new ParticipantClient();
             Participants = api.ParticipantGetParticipantAll();
 
             BindingContext = this;
@@ -34,7 +33,7 @@ namespace MedicalApp1
             InitializeComponent();
 
             Participants = new List<Participant>();
-            ParticipantApi api = new ParticipantApi();
+            ParticipantClient api = new ParticipantClient();
             Participants = api.ParticipantGetParticipantAll();
             Participants.Add(new Participant
             {

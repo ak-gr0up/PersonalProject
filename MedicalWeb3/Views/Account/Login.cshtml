@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Researchers";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Log in</h1>
+
+    <form action="@Url.ActionLink(controller:"Account", action: "Login")" method="post">
+        <table style="width:100%;">
+            <tr>
+                <td>Login</td>
+                <td><input type="text" name="Login" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="Password" /></td>
+            </tr>
+        </table>
+        <input type="submit" />
+        <p style="color:red">@Model</p>
+    </form>
+</div>

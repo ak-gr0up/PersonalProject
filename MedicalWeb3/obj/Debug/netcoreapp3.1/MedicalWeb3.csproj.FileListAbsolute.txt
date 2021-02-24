@@ -34,11 +34,13 @@ C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\MedicalWeb3.dll
 C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\MedicalWeb3.pdb
 C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\MedicalWeb3.genruntimeconfig.cache
 C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\MedicalWeb3.csproj.CopyComplete
-C:\Users\Dima\source\project\MedicalWeb3\bin\Debug\netcoreapp3.1\MedicalCommon.dll
-C:\Users\Dima\source\project\MedicalWeb3\bin\Debug\netcoreapp3.1\MedicalCommon.pdb
 C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\MedicalWeb3.csprojAssemblyReference.cache
-C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Person\Index.cshtml.g.cs
 C:\Users\Dima\source\project\MedicalWeb3\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\Dima\source\project\MedicalWeb3\bin\Debug\netcoreapp3.1\RestSharp.dll
 C:\Users\Dima\source\project\MedicalWeb3\bin\Debug\netcoreapp3.1\MedicalClient.dll
 C:\Users\Dima\source\project\MedicalWeb3\bin\Debug\netcoreapp3.1\MedicalClient.pdb
+C:\Users\Dima\source\project\MedicalWeb3\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Participant\Index.cshtml.g.cs
+C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Account\Registered.cshtml.g.cs

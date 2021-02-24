@@ -38,8 +38,8 @@ namespace MedicalWebService.Controllers
         public async Task<ActionResult<Participant>> GetParticipantMe()
         {
             var id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
-
-            var Participant = await _context.Participant.FindAsync(id);
+            var guid = Guid.Parse(id);
+            var Participant = await _context.Participant.FindAsync(guid);
 
             if (Participant == null)
             {

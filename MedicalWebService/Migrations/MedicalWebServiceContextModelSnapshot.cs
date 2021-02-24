@@ -15,8 +15,8 @@ namespace MedicalWebService.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("MedicalWebService.Model.Participant", b =>
@@ -61,7 +61,7 @@ namespace MedicalWebService.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Login")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -73,6 +73,10 @@ namespace MedicalWebService.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Login")
+                        .IsUnique()
+                        .HasFilter("[Login] IS NOT NULL");
 
                     b.ToTable("Researcher");
                 });

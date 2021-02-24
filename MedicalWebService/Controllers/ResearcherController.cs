@@ -22,20 +22,14 @@ namespace MedicalWebService.Controllers
             _context = context;
         }
 
-        [HttpGet("{id}/patients")]
-        [Authorize(Roles = "Researcher")]
-        public async Task<ActionResult<IEnumerable<Participant>>> GetParticipant(Guid id)
-        {
-            return await _context.Participant.Where(p => p.ResearcherId == id).ToListAsync();
-        }
-
-
         // GET: api/Researcher/5
         [HttpGet("{id}")]
         [Authorize(Roles = "Participant")]
-        public async Task<ActionResult<Researcher>> GetResearcher(Guid id)
+        public async Task<ActionResult<Researcher>> GetResearcher()
         
         {
+            var str_id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+            var id = Guid.Parse(str_id);
             var Researcher = await _context.Researcher.FindAsync(id);
 
             if (Researcher == null)
@@ -51,8 +45,12 @@ namespace MedicalWebService.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutResearcher(Guid id, Researcher Researcher)
+        [Authorize (Roles = "Researcher")]
+        public async Task<IActionResult> PutResearcher(Researcher Researcher)
         {
+            var str_id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+            var id = Guid.Parse(str_id);
+
             if (id != Researcher.Id)
             {
                 return BadRequest();
@@ -93,8 +91,12 @@ namespace MedicalWebService.Controllers
 
         // DELETE: api/Researcher/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Researcher>> DeleteResearcher(Guid id)
+        [Authorize(Roles = "Researcher")]
+        public async Task<ActionResult<Researcher>> DeleteResearcher()
         {
+            var str_id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+            var id = Guid.Parse(str_id);
+
             var Researcher = await _context.Researcher.FindAsync(id);
             if (Researcher == null)
             {

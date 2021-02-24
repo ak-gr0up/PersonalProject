@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MedicalCommon;
-using IO.Swagger.Api;
+using MedicalClient;
 
 namespace MedicalApp1
 {
@@ -20,7 +19,7 @@ namespace MedicalApp1
         }
         public async void OnDoneClicked(object sender, EventArgs e)
         {
-            ParticipantApi api = new ParticipantApi();
+            ParticipantClient api = new ParticipantClient();
             Enum.TryParse(gender.Text, out Gender gender_in);
             Enum.TryParse(role.Text, out ParticipantRole role_in);
             var Participant = api.ParticipantPostParticipant(new Participant()

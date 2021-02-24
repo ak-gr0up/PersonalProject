@@ -16,5 +16,6 @@ namespace MedicalWebService.Data
 
         public DbSet<Participant> Participant { get; set; }
         public DbSet<Researcher> Researcher { get; set; }
+
     }
 }
