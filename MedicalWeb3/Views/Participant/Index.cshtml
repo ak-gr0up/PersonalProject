@@ -10,7 +10,6 @@
             <td>Name</td>
             <td>Surname</td>
             <td>Gender</td>
-            <td>Role</td>
             <td>BirthDate</td>
             <td>Login</td>
             <td>Id</td>
@@ -28,31 +27,5 @@
         }
     </table>
     
-    <form action="@Url.ActionLink(controller:"Participant", action: "Create")" method="post">
-        <table style="width:100%;">
-            <tr>
-                <td>Name</td>
-                <td>
-                    <input type="text" name="Name" />
-                </td>
-            </tr>
-            <tr>
-                <td>Surname</td>
-                <td><input type="text" name="Surname" /></td>
-            </tr>
-            <tr>
-                <td>Gender</td>
-                <td><input type="text" name="Gender" /></td>
-            </tr>
-            <tr>
-                <td>Role</td>
-                <td><input type="text" name="Role" /></td>
-            </tr>
-            <tr>
-                <td>Login</td>
-                <td><input type="text" name="Login" /></td>
-            </tr>
-        </table>
-        <input type="submit" />
-    </form>
+    
 </div>

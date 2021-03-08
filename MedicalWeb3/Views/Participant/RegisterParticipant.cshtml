@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Register Participant";
+    var model = Model as List<MedicalClient.Participant>;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Register Participant</h1>
+
+    <form action="@Url.ActionLink(controller:"Participant", action: "RegisterParticipant")" method="post">
+        <table style="width:100%;">
+            <tr>
+                <td>Name</td>
+                <td>
+                    <input type="text" name="Name" />
+                </td>
+            </tr>
+            <tr>
+                <td>Surname</td>
+                <td><input type="text" name="Surname" /></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="text" name="Gender" /></td>
+            </tr>
+            <tr>
+                <td>Login</td>
+                <td><input type="text" name="Login" /></td>
+            </tr>
+        </table>
+        <input type="submit" />
+    </form>
+
+</div>

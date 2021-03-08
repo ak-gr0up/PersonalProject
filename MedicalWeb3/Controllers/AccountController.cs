@@ -64,5 +64,16 @@ namespace MedicalWeb3.Controllers
             return RedirectToAction(nameof(Index), "Participant");
         }
 
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            //AccountClient api = new AccountClient();
+            var option = new CookieOptions();
+            option.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Append("token", "", option);
+
+            return RedirectToAction(nameof(Index), "Home");
+        }
+
     }
 }

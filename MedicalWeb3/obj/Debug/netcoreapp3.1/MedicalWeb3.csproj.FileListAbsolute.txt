@@ -44,3 +44,5 @@ C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Par
 C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Account\Registered.cshtml.g.cs
+C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Participant\need_to_login.cshtml.g.cs
+C:\Users\Dima\source\project\MedicalWeb3\obj\Debug\netcoreapp3.1\Razor\Views\Participant\registerParticipant.cshtml.g.cs
