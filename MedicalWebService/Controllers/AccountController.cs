@@ -40,7 +40,7 @@ namespace TokenApp.Controllers
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            return encodedJwt;
+            return Ok(encodedJwt);
         }
 
         private ClaimsIdentity GetResearcherIdentity(string username, string password)
@@ -84,7 +84,7 @@ namespace TokenApp.Controllers
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            return encodedJwt;
+            return Ok(encodedJwt);
         }
 
         private ClaimsIdentity GetParticipantIdentity(string username)

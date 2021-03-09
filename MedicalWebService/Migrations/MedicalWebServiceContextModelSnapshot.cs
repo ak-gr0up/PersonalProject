@@ -19,6 +19,42 @@ namespace MedicalWebService.Migrations
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MedicalWebService.Model.DataPoint", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("DistalPressure")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HeartBeat")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ParticipantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ResearcherId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SelfFeeling")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SistalPressure")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Temperature")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParticipantId");
+
+                    b.HasIndex("ResearcherId");
+
+                    b.ToTable("DataPoint");
+                });
+
             modelBuilder.Entity("MedicalWebService.Model.Participant", b =>
                 {
                     b.Property<Guid>("Id")
@@ -51,6 +87,8 @@ namespace MedicalWebService.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ResearcherId");
+
                     b.ToTable("Participant");
                 });
 
@@ -79,6 +117,48 @@ namespace MedicalWebService.Migrations
                         .HasFilter("[Login] IS NOT NULL");
 
                     b.ToTable("Researcher");
+                });
+
+            modelBuilder.Entity("MedicalWebService.Model.DataPoint", b =>
+                {
+                    b.HasOne("MedicalWebService.Model.Participant", "Participant")
+                        .WithMany("DataPoints")
+                        .HasForeignKey("ParticipantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MedicalWebService.Model.Researcher", "Researcher")
+                        .WithMany("DataPoints")
+                        .HasForeignKey("ResearcherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Participant");
+
+                    b.Navigation("Researcher");
+                });
+
+            modelBuilder.Entity("MedicalWebService.Model.Participant", b =>
+                {
+                    b.HasOne("MedicalWebService.Model.Researcher", "Researcher")
+                        .WithMany("Participants")
+                        .HasForeignKey("ResearcherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Researcher");
+                });
+
+            modelBuilder.Entity("MedicalWebService.Model.Participant", b =>
+                {
+                    b.Navigation("DataPoints");
+                });
+
+            modelBuilder.Entity("MedicalWebService.Model.Researcher", b =>
+                {
+                    b.Navigation("DataPoints");
+
+                    b.Navigation("Participants");
                 });
 #pragma warning restore 612, 618
         }
