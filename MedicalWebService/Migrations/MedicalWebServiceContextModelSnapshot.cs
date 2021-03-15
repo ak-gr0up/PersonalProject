@@ -25,17 +25,32 @@ namespace MedicalWebService.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("Cough")
+                        .HasColumnType("bit");
+
                     b.Property<int>("DistalPressure")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Dizziness")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Headache")
+                        .HasColumnType("bit");
+
                     b.Property<int>("HeartBeat")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Nausea")
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("ParticipantId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ResearcherId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Rheum")
+                        .HasColumnType("bit");
 
                     b.Property<int>("SelfFeeling")
                         .HasColumnType("int");
@@ -45,6 +60,9 @@ namespace MedicalWebService.Migrations
 
                     b.Property<double>("Temperature")
                         .HasColumnType("float");
+
+                    b.Property<bool>("Weakness")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -121,21 +139,17 @@ namespace MedicalWebService.Migrations
 
             modelBuilder.Entity("MedicalWebService.Model.DataPoint", b =>
                 {
-                    b.HasOne("MedicalWebService.Model.Participant", "Participant")
+                    b.HasOne("MedicalWebService.Model.Participant", null)
                         .WithMany("DataPoints")
                         .HasForeignKey("ParticipantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalWebService.Model.Researcher", "Researcher")
+                    b.HasOne("MedicalWebService.Model.Researcher", null)
                         .WithMany("DataPoints")
                         .HasForeignKey("ResearcherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Participant");
-
-                    b.Navigation("Researcher");
                 });
 
             modelBuilder.Entity("MedicalWebService.Model.Participant", b =>

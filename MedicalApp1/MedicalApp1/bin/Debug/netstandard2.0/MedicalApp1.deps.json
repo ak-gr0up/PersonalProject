@@ -10,10 +10,10 @@
       "MedicalApp1/1.0.0": {
         "dependencies": {
           "MedicalClient": "1.0.0",
-          "MedicalCommon": "1.0.0",
           "NETStandard.Library": "2.0.3",
           "Xamarin.Essentials": "1.5.3.2",
-          "Xamarin.Forms": "4.6.0.1141"
+          "Xamarin.Forms": "4.6.0.1141",
+          "Mono.Android": "0.0.0.0"
         },
         "runtime": {
           "MedicalApp1.dll": {}
@@ -38,6 +38,14 @@
           "lib/netstandard2.0/RestSharp.dll": {
             "assemblyVersion": "106.11.7.0",
             "fileVersion": "106.11.7.0"
+          }
+        }
+      },
+      "System.ComponentModel.Annotations/5.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.ComponentModel.Annotations.dll": {
+            "assemblyVersion": "4.2.1.0",
+            "fileVersion": "4.6.26515.6"
           }
         }
       },
@@ -78,17 +86,20 @@
       },
       "MedicalClient/1.0.0": {
         "dependencies": {
-          "MedicalCommon": "1.0.0",
           "Newtonsoft.Json": "12.0.3",
-          "RestSharp": "106.11.7"
+          "RestSharp": "106.11.7",
+          "System.ComponentModel.Annotations": "5.0.0"
         },
         "runtime": {
           "MedicalClient.dll": {}
         }
       },
-      "MedicalCommon/1.0.0": {
+      "Mono.Android/0.0.0.0": {
         "runtime": {
-          "MedicalCommon.dll": {}
+          "Mono.Android.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
         }
       }
     }
@@ -127,6 +138,13 @@
       "path": "restsharp/106.11.7",
       "hashPath": "restsharp.106.11.7.nupkg.sha512"
     },
+    "System.ComponentModel.Annotations/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dMkqfy2el8A8/I76n2Hi1oBFEbG1SfxD2l5nhwXV3XjlnOmwxJlQbYpJH4W51odnU9sARCSAgv7S3CyAFMkpYg==",
+      "path": "system.componentmodel.annotations/5.0.0",
+      "hashPath": "system.componentmodel.annotations.5.0.0.nupkg.sha512"
+    },
     "System.Numerics.Vectors/4.5.0": {
       "type": "package",
       "serviceable": true,
@@ -153,8 +171,8 @@
       "serviceable": false,
       "sha512": ""
     },
-    "MedicalCommon/1.0.0": {
-      "type": "project",
+    "Mono.Android/0.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

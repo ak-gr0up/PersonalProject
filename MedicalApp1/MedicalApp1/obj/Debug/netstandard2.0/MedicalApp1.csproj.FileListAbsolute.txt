@@ -12,9 +12,11 @@ C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\obj\Debug\netstandard2.0\Xa
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\obj\Debug\netstandard2.0\MedicalApp1.dll
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\obj\Debug\netstandard2.0\ref\MedicalApp1.dll
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\obj\Debug\netstandard2.0\MedicalApp1.pdb
-C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\bin\Debug\netstandard2.0\MedicalCommon.dll
-C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\bin\Debug\netstandard2.0\MedicalCommon.pdb
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\obj\Debug\netstandard2.0\MedicalApp1.csproj.CopyComplete
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\bin\Debug\netstandard2.0\MedicalClient.dll
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\bin\Debug\netstandard2.0\MedicalClient.pdb
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\obj\Debug\netstandard2.0\Page1.xaml.g.cs
+C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\obj\Debug\netstandard2.0\FormSend.xaml.g.cs
+C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\bin\Debug\netstandard2.0\Mono.Android.dll
+C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\bin\Debug\netstandard2.0\Mono.Android.pdb
+C:\Users\Dima\source\project\MedicalApp1\MedicalApp1\bin\Debug\netstandard2.0\Mono.Android.xml

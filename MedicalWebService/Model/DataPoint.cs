@@ -18,13 +18,18 @@ namespace MedicalWebService.Model
         [ForeignKey("Researcher")]
         public Guid ResearcherId { get; set; }
 
-        public Participant Participant { get; set; }
-        public Researcher Researcher { get; set; }
-
         public int HeartBeat { get; set; }
         public double Temperature { get; set; }
         public int DistalPressure { get; set; }
         public int SistalPressure { get; set; }
         public int SelfFeeling { get; set; }
+
+        public bool Headache { get; set; }
+        public bool Dizziness { get; set; }
+        public bool Cough { get; set; }
+        public bool Rheum { get; set; }
+        public bool Weakness { get; set; }
+        public bool Nausea { get; set; }
+
     }
 }

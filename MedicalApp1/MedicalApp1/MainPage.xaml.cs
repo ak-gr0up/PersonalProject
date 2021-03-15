@@ -7,40 +7,33 @@ namespace MedicalApp1
 {
     public partial class MainPage : ContentPage
     {
-        public IList<Participant> Participants { get; set; }
 
         public MainPage()
         {
             InitializeComponent();
 
-            Participants = new List <Participant>();
-            ParticipantClient api = new ParticipantClient();
-            Participants = api.ParticipantGetParticipantAll();
-
             BindingContext = this;
         }
 
-        public async void OnCreateClicked(object sender, EventArgs e)
+        public async void OnLoginClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Page1
-            {
-                BindingContext = new Participant()
-            });
+            AccountClient api = new AccountClient();
+            //try
+            //{
+                var response = await api.TokenParticipantAsync(username.Text);
+                
+                Application.Current.Properties["token"] = response;
+
+                await Navigation.PushAsync(new Page1
+                {
+                    BindingContext = new DataPoint()
+                });
+            //}
+            //catch
+            //{
+            //    await App.Current.MainPage.DisplayAlert("Alert", "Wrong phone number", "OK");
+            //}
         }
 
-        public async void OnRefreshClicked(object sender, EventArgs e)
-        {
-            InitializeComponent();
-
-            Participants = new List<Participant>();
-            ParticipantClient api = new ParticipantClient();
-            Participants = api.ParticipantGetParticipantAll();
-            Participants.Add(new Participant
-            {
-                Name = "lorem",
-                Surname = "ispum"
-            });
-            BindingContext = this;
-        }
     }
 }

@@ -1,2 +1,2 @@
-AdbTarget=
+AdbTarget=-s CLCDU18604002801
 AdbOptions=

@@ -4,11 +4,17 @@
              x:Class="MedicalApp1.Page1">
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="name" Placeholder="Name" />
-            <Entry x:Name="surname" Placeholder ="Surname" />
-            <Entry x:Name="gender" Placeholder ="Gender" />
-            <Entry x:Name="role" Placeholder ="Role" />
-            <Entry x:Name="login" Placeholder ="Login" />
+            <Entry x:Name="hearthbeat" Placeholder="Hearth Beat" />
+            <Entry x:Name="temperature" Placeholder ="Temperature" />
+            <Entry x:Name="distal_pressure" Placeholder ="Distal Pressure" />
+            <Entry x:Name="sistal_pressure" Placeholder="Sistal Pressure" />
+            <Label Text="Headache" /><CheckBox x:Name="headache"/>
+            <Label Text="Dizziness" /><CheckBox x:Name="Dizziness"/>
+            <Label Text="Cough" /><CheckBox x:Name="cough"/>
+            <Label Text="Rheum" /><CheckBox x:Name="rheum"/>
+            <Label Text="Weakness" /><CheckBox x:Name="weakness"/>
+            <Label Text="Nausea" /><CheckBox x:Name="nausea"/>
+            <Entry x:Name="self_feeling" Placeholder ="Self Feeling" />
             <Button Text="Done" Clicked="OnDoneClicked" />
         </StackLayout>
     </ContentPage.Content>

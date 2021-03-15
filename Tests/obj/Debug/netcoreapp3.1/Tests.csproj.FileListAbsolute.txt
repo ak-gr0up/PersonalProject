@@ -246,7 +246,7 @@ C:\Users\Dima\source\project\Tests\bin\Debug\netcoreapp3.1\runtimes\win-x86\nati
 C:\Users\Dima\source\project\Tests\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Dima\source\project\Tests\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Dima\source\project\Tests\bin\Debug\netcoreapp3.1\MedicalWebService.dll
-C:\Users\Dima\source\project\Tests\bin\Debug\netcoreapp3.1\MedicalWebService.pdb
 C:\Users\Dima\source\project\Tests\obj\Debug\netcoreapp3.1\Tests.csproj.CoreCompileInputs.cache
 C:\Users\Dima\source\project\Tests\obj\Debug\netcoreapp3.1\Tests.dll
 C:\Users\Dima\source\project\Tests\obj\Debug\netcoreapp3.1\Tests.pdb
+C:\Users\Dima\source\project\Tests\bin\Debug\netcoreapp3.1\MedicalWebService.pdb

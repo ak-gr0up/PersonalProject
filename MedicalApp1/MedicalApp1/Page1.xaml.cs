@@ -19,19 +19,28 @@ namespace MedicalApp1
         }
         public async void OnDoneClicked(object sender, EventArgs e)
         {
-            ParticipantClient api = new ParticipantClient();
-            Enum.TryParse(gender.Text, out Gender gender_in);
-            Enum.TryParse(role.Text, out ParticipantRole role_in);
-            var Participant = api.ParticipantPostParticipant(new Participant()
+            DataPointClient api = new DataPointClient(Application.Current.Properties["token"] as String);
+            var datapoint = new DataPoint()
             {
-                Id = Guid.NewGuid(),
-                Name = name.Text,
-                Surname = surname.Text,
-                Gender = gender_in,
-                Login = login.Text,
-                BirthDate = DateTime.Now.AddYears(-14)
-            });
-            await Navigation.PopAsync();
+                HeartBeat = int.Parse(hearthbeat.Text),
+                Temperature = int.Parse(temperature.Text),
+                DistalPressure = int.Parse(distal_pressure.Text),
+                SistalPressure = int.Parse(sistal_pressure.Text),
+                SelfFeeling = int.Parse(self_feeling.Text),
+                Headache = headache.IsChecked,
+                Dizziness = Dizziness.IsChecked,
+                Cough = cough.IsChecked,
+                Rheum = rheum.IsChecked,
+                Weakness = weakness.IsChecked,
+                Nausea = nausea.IsChecked
+            };
+
+            var type = datapoint.GetType();
+
+            var ser = Newtonsoft.Json.JsonConvert.SerializeObject(datapoint);
+
+            await api.PostDataPointAsync(datapoint);
+            await Navigation.PushAsync(new FormSend{});
         }
     }
 }
