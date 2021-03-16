@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.Content;
+using System;
 using System.Net.Http;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "DataPoints";
+    var model = Model as List<MedicalClient.DataPoint>;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Data Points</h1>
+    <table style="width:100%; border:1px solid black;">
+        <tr>
+            <td>Date</td>
+            <td>Heartbeat</td>
+            <td>Temperature</td>
+            <td>Distal Pressure</td>
+            <td>Sistal Pressure</td>
+            <td>Cough</td>
+            <td>Headache</td>
+            <td>Dizzines</td>
+            <td>Nausea</td>
+            <td>Rheum</td>
+            <td>Weakness</td>
+            <td>Self Feeling</td>
+        </tr>
+        @foreach (var point in model)
+        {
+    <tr>
+        <td>@point.Time.ToString()</td>
+        <td>@point.HeartBeat</td>
+        <td>@point.Temperature</td>
+        <td>@point.DistalPressure</td>
+        <td>@point.SistalPressure</td>
+        <td>@point.Cough</td>
+        <td>@point.Headache</td>
+        <td>@point.Dizziness</td>
+        <td>@point.Nausea</td>
+        <td>@point.Rheum</td>
+        <td>@point.Weakness</td>
+        <td>@point.SelfFeeling</td>
+    </tr>
+        }
+    </table>

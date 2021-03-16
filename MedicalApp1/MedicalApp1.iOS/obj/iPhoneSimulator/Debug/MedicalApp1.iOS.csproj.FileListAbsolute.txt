@@ -1,7 +1,6 @@
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\bin\iPhoneSimulator\Debug\MedicalApp1.iOS.exe
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\bin\iPhoneSimulator\Debug\MedicalApp1.iOS.pdb
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\bin\iPhoneSimulator\Debug\Newtonsoft.Json.dll
-C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\bin\iPhoneSimulator\Debug\RestSharp.dll
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\bin\iPhoneSimulator\Debug\Xamarin.Essentials.dll
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\bin\iPhoneSimulator\Debug\Xamarin.Essentials.pdb
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\bin\iPhoneSimulator\Debug\Xamarin.Forms.Core.dll
@@ -61,3 +60,4 @@ C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\obj\iPhoneSimulator\Deb
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\obj\iPhoneSimulator\Debug\MedicalApp1.iOS.csproj.CopyComplete
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\obj\iPhoneSimulator\Debug\MedicalApp1.iOS.exe
 C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\obj\iPhoneSimulator\Debug\MedicalApp1.iOS.pdb
+C:\Users\Dima\source\project\MedicalApp1\MedicalApp1.iOS\bin\iPhoneSimulator\Debug\RestSharp.dll

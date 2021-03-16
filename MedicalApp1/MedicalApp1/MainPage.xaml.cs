@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using MedicalClient;
 using System;
 

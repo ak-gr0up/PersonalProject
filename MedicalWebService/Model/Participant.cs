@@ -13,7 +13,6 @@ namespace MedicalWebService.Model
         [Key]
         public Guid Id { get; set; }
 
-        [ForeignKey("Researcher")]
         public Guid ResearcherId { get; set; }
 
         public string Name { get; set; }
@@ -24,8 +23,6 @@ namespace MedicalWebService.Model
         public int Weight { get; set; }
         public int Height { get; set; }
 
-        public Researcher Researcher { get; set; }
-        public ICollection<DataPoint> DataPoints { get; set; }
 
         public override string ToString()
         {

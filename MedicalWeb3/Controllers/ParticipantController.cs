@@ -55,5 +55,20 @@ namespace MedicalWeb3.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ViewDataPoints(string id)
+        {
+            Guid.TryParse(id, out var guid);
+            try
+            {
+                DataPointClient api = new DataPointClient(Request.Cookies["token"]);
+                var model = await api.GetDataPointAsync(guid);
+                return View("ViewDataPoints", model);
+            }
+            catch
+            {
+                return View("need_to_login");
+            }
+        }
     }
 }

@@ -18,9 +18,6 @@ namespace MedicalWebService.Model
         public string Password { get; set; }
         public string Login { get; set; }
 
-        public ICollection<Participant> Participants { get; set; }
-        public ICollection<DataPoint> DataPoints { get; set; }
-
 
         public override string ToString()
         {

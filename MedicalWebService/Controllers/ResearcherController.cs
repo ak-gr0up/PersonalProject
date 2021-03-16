@@ -86,7 +86,7 @@ namespace MedicalWebService.Controllers
             _context.Researcher.Add(Researcher);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetResearcher", new { id = Researcher.Id }, Researcher);
+            return Ok(Researcher);
         }
 
         // DELETE: api/Researcher/5

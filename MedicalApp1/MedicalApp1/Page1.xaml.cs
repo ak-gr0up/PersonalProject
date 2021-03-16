@@ -32,7 +32,8 @@ namespace MedicalApp1
                 Cough = cough.IsChecked,
                 Rheum = rheum.IsChecked,
                 Weakness = weakness.IsChecked,
-                Nausea = nausea.IsChecked
+                Nausea = nausea.IsChecked,
+                Time = DateTime.Now
             };
 
             var type = datapoint.GetType();

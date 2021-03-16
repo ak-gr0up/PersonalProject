@@ -18,7 +18,7 @@ namespace MedicalClient
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.10.5.0 (NJsonSchema v10.3.7.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DataPointClient
     {
-        private string _baseUrl = "http://192.168.88.14:5000";
+        private string _baseUrl = "http://localhost:5000";
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
         public DataPointClient()
@@ -384,7 +384,7 @@ namespace MedicalClient
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.10.5.0 (NJsonSchema v10.3.7.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class ParticipantClient
     {
-        private string _baseUrl = "http://192.168.88.14:5000";
+        private string _baseUrl = "http://localhost:5000";
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
         public ParticipantClient()
@@ -897,7 +897,7 @@ namespace MedicalClient
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.10.5.0 (NJsonSchema v10.3.7.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class ResearcherClient
     {
-        private string _baseUrl = "http://192.168.88.14:5000";
+        private string _baseUrl = "http://localhost:5000";
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
         public ResearcherClient()
@@ -1342,7 +1342,7 @@ namespace MedicalClient
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.10.5.0 (NJsonSchema v10.3.7.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class AccountClient
     {
-        private string _baseUrl = "http://192.168.88.14:5000";
+        private string _baseUrl = "http://localhost:5000";
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
         public AccountClient()
@@ -1637,7 +1637,7 @@ namespace MedicalClient
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.10.5.0 (NJsonSchema v10.3.7.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class ValuesClient
     {
-        private string _baseUrl = "http://192.168.88.14:5000";
+        private string _baseUrl = "http://localhost:5000";
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
         public ValuesClient()
@@ -1924,6 +1924,10 @@ namespace MedicalClient
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public System.Guid ResearcherId { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("time", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public System.DateTimeOffset Time { get; set; }
+
         [Newtonsoft.Json.JsonProperty("heartBeat", Required = Newtonsoft.Json.Required.Always)]
         public int HeartBeat { get; set; }
 
@@ -1993,12 +1997,6 @@ namespace MedicalClient
         [Newtonsoft.Json.JsonProperty("height", Required = Newtonsoft.Json.Required.Always)]
         public int Height { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("researcher", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Researcher Researcher { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("dataPoints", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<DataPoint> DataPoints { get; set; }
-
 
     }
 
@@ -2029,12 +2027,6 @@ namespace MedicalClient
 
         [Newtonsoft.Json.JsonProperty("login", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Login { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("participants", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<Participant> Participants { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("dataPoints", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<DataPoint> DataPoints { get; set; }
 
 
     }

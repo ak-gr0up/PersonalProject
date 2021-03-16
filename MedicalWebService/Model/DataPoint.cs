@@ -12,11 +12,13 @@ namespace MedicalWebService.Model
         [Key]
         public Guid Id { get; set; }
 
-        [ForeignKey("Participant")]
+//        [ForeignKey("Participant")]
         public Guid ParticipantId { get; set; }
 
-        [ForeignKey("Researcher")]
+//        [ForeignKey("Researcher")]
         public Guid ResearcherId { get; set; }
+
+        public DateTime Time { get; set; }
 
         public int HeartBeat { get; set; }
         public double Temperature { get; set; }

@@ -12,17 +12,15 @@
             <td>Gender</td>
             <td>BirthDate</td>
             <td>Login</td>
-            <td>Id</td>
         </tr>
         @foreach (var user in model)
         {
             <tr>
-                <td>@user.Name</td>
+                <td><a href="/Participant/ViewDataPoints/@user.Id">@user.Name</a></td>
                 <td>@user.Surname</td>
                 <td>@user.Gender</td>
                 <td>@user.BirthDate</td>
                 <td>@user.Login</td>
-                <td>@user.Id</td>
             </tr>
         }
     </table>
