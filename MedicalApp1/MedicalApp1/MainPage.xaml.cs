@@ -1,6 +1,8 @@
 ﻿using Xamarin.Forms;
 using MedicalClient;
 using System;
+using Android.Content;
+using Android.Preferences;
 
 namespace MedicalApp1
 {
@@ -12,6 +14,25 @@ namespace MedicalApp1
             InitializeComponent();
 
             BindingContext = this;
+
+        }
+
+        protected override async void OnAppearing()
+        {
+            try
+            {
+                var token = Application.Current.Properties["token"];
+                ParticipantClient api = new ParticipantClient(token.ToString());
+                await api.GetParticipantMeAsync();
+                await Navigation.PushAsync(new Page1
+                {
+                    BindingContext = new DataPoint()
+                });
+            }
+            catch
+            {
+            }
+            base.OnAppearing();
         }
 
         public async void OnLoginClicked(object sender, EventArgs e)

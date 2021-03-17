@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using MedicalWebService.Data;
 using MedicalWebService.Model;
@@ -27,6 +28,15 @@ namespace MedicalWebService.Controllers
         public async Task<ActionResult<IEnumerable<DataPoint>>> GetDataPoint(Guid id)
         { 
             return await _context.DataPoint.Where(p => p.ParticipantId == id).ToListAsync();
+        }
+
+        [HttpGet("/all")]
+        [Authorize(Roles = "Researcher")]
+        public async Task<ActionResult<IEnumerable<DataPoint>>> GetDataPointAll()
+        {
+            var id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+            var guid = Guid.Parse(id);
+            return await _context.DataPoint.Where(p => p.ResearcherId == guid).ToListAsync();
         }
 
         [HttpPost]

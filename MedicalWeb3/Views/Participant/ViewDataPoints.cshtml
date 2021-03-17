@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "DataPoints";
-    var model = Model as List<MedicalClient.DataPoint>;
+    var model = Model;// as Tuple<List<MedicalClient.DataPoint>, string>;
 }
 
 <div class="text-center">
@@ -20,21 +20,22 @@
             <td>Weakness</td>
             <td>Self Feeling</td>
         </tr>
-        @foreach (var point in model)
+        @foreach (var point in model.Item1)
         {
-    <tr>
-        <td>@point.Time.ToString()</td>
-        <td>@point.HeartBeat</td>
-        <td>@point.Temperature</td>
-        <td>@point.DistalPressure</td>
-        <td>@point.SistalPressure</td>
-        <td>@point.Cough</td>
-        <td>@point.Headache</td>
-        <td>@point.Dizziness</td>
-        <td>@point.Nausea</td>
-        <td>@point.Rheum</td>
-        <td>@point.Weakness</td>
-        <td>@point.SelfFeeling</td>
-    </tr>
+            <tr>
+                <td>@point.Time.ToString()</td>
+                <td>@point.HeartBeat</td>
+                <td>@point.Temperature</td>
+                <td>@point.DistalPressure</td>
+                <td>@point.SistalPressure</td>
+                <td>@point.Cough</td>
+                <td>@point.Headache</td>
+                <td>@point.Dizziness</td>
+                <td>@point.Nausea</td>
+                <td>@point.Rheum</td>
+                <td>@point.Weakness</td>
+                <td>@point.SelfFeeling</td>
+            </tr>
         }
     </table>
+    <a href="/Participant/DownloadById/@(model.Item2)">Download CSV</a>
