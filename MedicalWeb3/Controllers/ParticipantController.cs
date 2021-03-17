@@ -84,12 +84,34 @@ namespace MedicalWeb3.Controllers
             StringBuilder sb = new StringBuilder();
             //add separator for header
             sb.Append("Temperature").Append(";")
-                .Append("Heart Beat").Append(";").Append("\r\n");
+                .Append("Heart Beat").Append(";")
+                .Append("Distal Pressure").Append(";")
+                .Append("Sistal Pressure").Append(";")
+                .Append("Self Feeling").Append(";")
+                .Append("Headache").Append(";")
+                .Append("Dizziness").Append(";")
+                .Append("Cough").Append(";")
+                .Append("Rheum").Append(";")
+                .Append("Weakness").Append(";")
+                .Append("Nausea").Append(";")
+                .Append("Participant Id").Append(";")
+                .Append("Researcher Id").Append("\r\n");
 
             for (int i = 0; i < data.Length; i++)
             {
                 sb.Append(data[i].Temperature).Append(";")
-                .Append(data[i].HeartBeat).Append("\r\n");
+                .Append(data[i].HeartBeat).Append(";")
+                .Append(data[i].DistalPressure).Append(";")
+                .Append(data[i].SistalPressure).Append(";")
+                .Append(data[i].SelfFeeling).Append(";")
+                .Append(data[i].Headache).Append(";")
+                .Append(data[i].Dizziness).Append(";")
+                .Append(data[i].Cough).Append(";")
+                .Append(data[i].Rheum).Append(";")
+                .Append(data[i].Rheum).Append(";")
+                .Append(data[i].Nausea).Append(";")
+                .Append(data[i].ParticipantId).Append(";")
+                .Append(data[i].ResearcherId).Append("\r\n");
             }
             return File(Encoding.ASCII.GetBytes(sb.ToString()), "text/csv", $"datapoints_{id}.csv");
         }
@@ -102,13 +124,37 @@ namespace MedicalWeb3.Controllers
             var data = res.ToArray();
             StringBuilder sb = new StringBuilder();
             //add separator for header
-            sb.Append("Temperature").Append(";")
-                .Append("Heart Beat").Append(";").Append("\r\n");
+            sb.Append("Date").Append(";")
+                .Append("Temperature").Append(";")
+                .Append("Heart Beat").Append(";")
+                .Append("Distal Pressure").Append(";")
+                .Append("Sistal Pressure").Append(";")
+                .Append("Self Feeling").Append(";")
+                .Append("Headache").Append(";")
+                .Append("Dizziness").Append(";")
+                .Append("Cough").Append(";")
+                .Append("Rheum").Append(";")
+                .Append("Weakness").Append(";")
+                .Append("Nausea").Append(";")
+                .Append("Participant Id").Append(";")
+                .Append("Researcher Id").Append("\r\n");
 
             for (int i = 0; i < data.Length; i++)
             {
-                sb.Append(data[i].Temperature).Append(";")
-                .Append(data[i].HeartBeat).Append("\r\n");
+                sb.Append(data[i].Time).Append(";")
+                .Append(data[i].Temperature).Append(";")
+                .Append(data[i].HeartBeat).Append(";")
+                .Append(data[i].DistalPressure).Append(";")
+                .Append(data[i].SistalPressure).Append(";")
+                .Append(data[i].SelfFeeling).Append(";")
+                .Append(data[i].Headache).Append(";")
+                .Append(data[i].Dizziness).Append(";")
+                .Append(data[i].Cough).Append(";")
+                .Append(data[i].Rheum).Append(";")
+                .Append(data[i].Rheum).Append(";")
+                .Append(data[i].Nausea).Append(";")
+                .Append(data[i].ParticipantId).Append(";")
+                .Append(data[i].ResearcherId).Append("\r\n");
             }
             return File(Encoding.ASCII.GetBytes(sb.ToString()), "text/csv", $"datapoints_all.csv");
         }
