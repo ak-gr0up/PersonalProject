@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Participants";
-    var model = Model as List<MedicalClient.Participant>;
+    var model = Model; //as Tuple<List<MedicalClient.Participant>, List<List<int>>, List<string>>;
 }
 
 <div class="text-center">
@@ -13,7 +13,7 @@
             <td>BirthDate</td>
             <td>Login</td>
         </tr>
-        @foreach (var user in model)
+        @foreach (var user in model.Item1)
         {
             <tr>
                 <td><a href="/Participant/ViewDataPoints/@user.Id">@user.Name</a></td>
@@ -25,6 +25,26 @@
         }
     </table>
     <a href="/Participant/DownloadAll">Download overall csv</a>
-    
+    <h2>Analysis</h2>
+    <table border="1">
+        <tr>
+            <td></td>
+            <td>Temperature</td>
+            <td>Heart Beat</td>
+            <td>Distal Pressure</td>
+            <td>Sistal Pressure</td>
+            <td>Self Feeling</td>
+        </tr>
+        @for (int i = 0; i < 4; i++)
+        {
+    <tr>
+        <td>@(model.Item3[i])</td>
+        @for(int j = 0; j < 5; j++)
+        {
+            <td>@(model.Item2[i][j])</td>
+        }
+    </tr>
+        }
+    </table>
     
 </div>

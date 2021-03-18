@@ -9,15 +9,57 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MedicalWeb3.Controllers
 {
+
     public class ParticipantController : Controller
     {
+
+        private List<List<double>> CountValues(ICollection<DataPoint> data)
+        {
+            var INF = 1000000000.0;
+            var res = new List<List<double>> { Enumerable.Repeat(0.0, 5).ToList(), Enumerable.Repeat(0.0, 5).ToList(), Enumerable.Repeat(INF, 5).ToList(), Enumerable.Repeat(0.0, 5).ToList() };
+            foreach (var point in data)
+            {
+                res[0][0] += point.Temperature;
+                res[0][1] += point.HeartBeat;
+                res[0][2] += point.SistalPressure;
+                res[0][3] += point.DistalPressure;
+                res[0][4] += point.SelfFeeling;
+                res[2][0] = Math.Min(res[2][0], point.Temperature);
+                res[2][1] = Math.Min(res[2][1], point.HeartBeat);
+                res[2][2] = Math.Min(res[2][2], point.SistalPressure);
+                res[2][3] = Math.Min(res[2][3], point.DistalPressure);
+                res[2][4] = Math.Min(res[2][4], point.SelfFeeling);
+                res[3][0] = Math.Max(res[2][0], point.Temperature);
+                res[3][1] = Math.Max(res[2][1], point.HeartBeat);
+                res[3][2] = Math.Max(res[2][2], point.SistalPressure);
+                res[3][3] = Math.Max(res[2][3], point.DistalPressure);
+                res[3][4] = Math.Max(res[2][4], point.SelfFeeling);
+            }
+            for (int i = 0; i < 5; i++)
+                res[0][i] /= data.ToArray().Length;
+            foreach (var point in data)
+            {
+                res[1][0] += Math.Pow(Math.Abs(res[0][0] - point.Temperature), 2);
+                res[1][1] += Math.Pow(Math.Abs(res[0][1] - point.HeartBeat), 2);
+                res[1][2] += Math.Pow(Math.Abs(res[0][2] - point.SistalPressure), 2);
+                res[1][3] += Math.Pow(Math.Abs(res[0][3] - point.DistalPressure), 2);
+                res[1][4] += Math.Pow(Math.Abs(res[0][4] - point.SelfFeeling), 2);
+            }
+            return res;
+        }
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             try
             {
                 ParticipantClient api = new ParticipantClient(Request.Cookies["token"]);
-                var model = await api.GetParticipantAsync();
+                DataPointClient api2 = new DataPointClient(Request.Cookies["token"]);
+                var data = await api2.GetDataPointAllAsync();
+                var res = CountValues(data);
+
+                var model = Tuple.Create(await api.GetParticipantAsync(), res, new List<string> { "Average", "Dispersion", "Minimal", "Maximal" });
+
                 return View(model);
             }
             catch
@@ -61,10 +103,11 @@ namespace MedicalWeb3.Controllers
         public async Task<IActionResult> ViewDataPoints(string id)
         {
             Guid.TryParse(id, out var guid);
-            try
-            {
+            try {
                 DataPointClient api = new DataPointClient(Request.Cookies["token"]);
-                Tuple<ICollection<MedicalClient.DataPoint>, string> model = Tuple.Create(await api.GetDataPointAsync(guid), id);
+                var data = await api.GetDataPointAsync(guid);
+                var res = CountValues(data);
+                var model = Tuple.Create(data, id, res, new List<string>{ "Average", "Dispersion", "Minimal", "Maximal"});
             
                 return View("ViewDataPoints", model);
             }

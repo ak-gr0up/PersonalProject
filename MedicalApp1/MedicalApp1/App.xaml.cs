@@ -1,4 +1,6 @@
 ﻿using Android.Content;
+using Android.Content.Res;
+using MedicalClient;
 using System;
 using System.Net.Http;
 using Xamarin.Forms;
@@ -12,11 +14,21 @@ namespace MedicalApp1
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
         {
+            try
+            {
+                var token = Application.Current.Properties["token"];
+                ParticipantClient api = new ParticipantClient(token.ToString());
+                api.GetParticipantMeAsync().Wait();
+                MainPage = new NavigationPage(new Page1());
+            }
+            catch
+            {
+                MainPage = new NavigationPage(new MainPage());
+            }
         }
 
         protected override void OnSleep()
