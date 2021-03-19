@@ -20,10 +20,10 @@
             <th>Слабость</th>
             <th>Самочувствие</th>
         </tr>
-        @foreach (var point in model.Item1)
+        @foreach (var point in model.Data)
         {
             <tr>
-                <td>@point.Time.ToString()</td>
+                <td>@point.Time.ToString("dd MMMM yyyy hh:mm:ss tt")</td>
                 <td>@point.HeartBeat</td>
                 <td>@point.Temperature</td>
                 <td>@point.DistalPressure</td>
@@ -38,9 +38,9 @@
             </tr>
         }
     </table>
-    <a href="/Participant/DownloadById/@(model.Item2)">Скачать отправки этого участника</a>
-    <h2 hidden="@(model.Item5)" style="margin-top:50px">Анализ</h2>
-    <table border= "1" hidden="@(model.Item5)">
+    <a href="/Participant/DownloadById/@(model.Id)">Скачать отправки этого участника</a>
+    <h2 hidden="@(model.Hidden)" style="margin-top:50px">Анализ</h2>
+    <table border= "1" hidden="@(model.Hidden)">
         <tr>
             <th></th>
             <th>Температура</th>
@@ -52,10 +52,10 @@
         @for (int i = 0; i < 4; i++)
         {
             <tr>
-                <th>@(model.Item4[i])</th>
+                <th>@(model.Headings[i])</th>
                 @for (int j = 0; j < 5; j++)
                 {
-                    <td>@(Math.Round(model.Item3[i][j], 2))</td>
+                    <td>@(Math.Round(model.Table[i][j], 2))</td>
                 }
             </tr>
         }

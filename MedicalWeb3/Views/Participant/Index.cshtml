@@ -12,22 +12,22 @@
             <th>Фамилия</th>
             <th>Пол</th>
             <th>Дата рождения</th>
-            <th>Логин</th>
+            <th>Номер телефона</th>
         </tr>
-        @foreach (var user in model.Item1)
+        @foreach (var user in model.Data)
         {
             <tr>
                 <td><a href="/Participant/ViewDataPoints/@user.Id">@user.Name</a></td>
                 <td>@user.Surname</td>
                 <td>@user.Gender</td>
-                <td>@user.BirthDate</td>
+                <td>@user.BirthDate.ToString("dd MMMM yyyy hh:mm:ss tt")</td>
                 <td>@user.Login</td>
             </tr>
         }
     </table>
     <a href="/Participant/DownloadAll">Скачать отправки по всем участникам</a>
-    <h2 hidden="@(model.Item4)" style="margin-top:50px">Анализ</h2>
-    <table border="1" hidden="@(model.Item4)">
+    <h2 hidden="@(model.Hidden)" style="margin-top:50px">Анализ</h2>
+    <table border="1" hidden="@(model.Hidden)">
         <tr>
             <th></th>
             <th>Температура</th>
@@ -39,10 +39,10 @@
         @for (int i = 0; i < 4; i++)
         {
             <tr>
-                <th>@(model.Item3[i])</th>
+                <th>@(model.Headings[i])</th>
                 @for (int j = 0; j < 5; j++)
                 {
-                    <td>@(Math.Round(model.Item2[i][j], 2))</td>
+                    <td>@(Math.Round(model.Table[i][j], 2))</td>
                 }
             </tr>
         }

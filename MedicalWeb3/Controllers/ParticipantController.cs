@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using MedicalClient;
+using MedicalWeb3.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedicalWeb3.Controllers
@@ -29,11 +30,11 @@ namespace MedicalWeb3.Controllers
                 res[2][2] = Math.Min(res[2][2], point.SistalPressure);
                 res[2][3] = Math.Min(res[2][3], point.DistalPressure);
                 res[2][4] = Math.Min(res[2][4], point.SelfFeeling);
-                res[3][0] = Math.Max(res[2][0], point.Temperature);
-                res[3][1] = Math.Max(res[2][1], point.HeartBeat);
-                res[3][2] = Math.Max(res[2][2], point.SistalPressure);
-                res[3][3] = Math.Max(res[2][3], point.DistalPressure);
-                res[3][4] = Math.Max(res[2][4], point.SelfFeeling);
+                res[3][0] = Math.Max(res[3][0], point.Temperature);
+                res[3][1] = Math.Max(res[3][1], point.HeartBeat);
+                res[3][2] = Math.Max(res[3][2], point.SistalPressure);
+                res[3][3] = Math.Max(res[3][3], point.DistalPressure);
+                res[3][4] = Math.Max(res[3][4], point.SelfFeeling);
             }
             for (int i = 0; i < 5; i++)
                 res[0][i] /= data.ToArray().Length;
@@ -58,7 +59,11 @@ namespace MedicalWeb3.Controllers
                 var data = await api2.GetDataPointAllAsync();
                 var res = CountValues(data);
 
-                var model = Tuple.Create(await api.GetParticipantAsync(), res, new List<string> { "Среднее", "Дисперсия", "Минимум", "Максимум" }, (bool)(data.ToArray().Length == 0));
+                var model = new ModelIndex();
+                model.Data = await api.GetParticipantAsync();
+                model.Table = res;
+                model.Headings = new List<string> { "Среднее", "Дисперсия", "Минимум", "Максимум" };
+                model.Hidden = (bool)(data.ToArray().Length == 0);
 
                 return View(model);
             }
@@ -107,8 +112,13 @@ namespace MedicalWeb3.Controllers
                 DataPointClient api = new DataPointClient(Request.Cookies["token"]);
                 var data = await api.GetDataPointAsync(guid);
                 var res = CountValues(data);
-                var model = Tuple.Create(data, id, res, new List<string> { "Среднее", "Дисперсия", "Минимум", "Максимум" }, data.ToArray().Length == 0);
-            
+                var model = new ModelDataPoints();
+                model.Id = id;
+                model.Data = data;
+                model.Table = res;
+                model.Headings = new List<string> { "Среднее", "Дисперсия", "Минимум", "Максимум" };
+                model.Hidden = (bool)(data.ToArray().Length == 0);
+
                 return View("ViewDataPoints", model);
             }
             catch
