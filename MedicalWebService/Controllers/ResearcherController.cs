@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MedicalWebService.Data;
 using MedicalWebService.Model;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace MedicalWebService.Controllers
 {
@@ -16,10 +17,12 @@ namespace MedicalWebService.Controllers
     public class ResearcherController : ControllerBase
     {
         private readonly MedicalWebServiceContext _context;
+        private readonly ILogger<ResearcherController> _logger;
 
-        public ResearcherController(MedicalWebServiceContext context)
+        public ResearcherController(MedicalWebServiceContext context, ILogger<ResearcherController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Researcher/5
@@ -28,16 +31,24 @@ namespace MedicalWebService.Controllers
         public async Task<ActionResult<Researcher>> GetResearcher()
         
         {
-            var str_id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
-            var id = Guid.Parse(str_id);
-            var Researcher = await _context.Researcher.FindAsync(id);
-
-            if (Researcher == null)
+            try
             {
-                return NotFound();
-            }
+                var str_id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+                var id = Guid.Parse(str_id);
+                var Researcher = await _context.Researcher.FindAsync(id);
 
-            return Researcher;
+                if (Researcher == null)
+                {
+                    return NotFound();
+                }
+
+                return Researcher;
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
 
@@ -48,33 +59,41 @@ namespace MedicalWebService.Controllers
         [Authorize (Roles = "Researcher")]
         public async Task<IActionResult> PutResearcher(Researcher Researcher)
         {
-            var str_id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
-            var id = Guid.Parse(str_id);
-
-            if (id != Researcher.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(Researcher).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ResearcherExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                var str_id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+                var id = Guid.Parse(str_id);
 
-            return NoContent();
+                if (id != Researcher.Id)
+                {
+                    return BadRequest();
+                }
+
+                _context.Entry(Researcher).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ResearcherExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return NoContent();
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         // POST: api/Researcher
@@ -83,10 +102,18 @@ namespace MedicalWebService.Controllers
         [HttpPost]
         public async Task<ActionResult<Researcher>> PostResearcher(Researcher Researcher)
         {
-            _context.Researcher.Add(Researcher);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Researcher.Add(Researcher);
+                await _context.SaveChangesAsync();
 
-            return Ok(Researcher);
+                return Ok(Researcher);
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         // DELETE: api/Researcher/5
@@ -94,24 +121,40 @@ namespace MedicalWebService.Controllers
         [Authorize(Roles = "Researcher")]
         public async Task<ActionResult<Researcher>> DeleteResearcher()
         {
-            var str_id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
-            var id = Guid.Parse(str_id);
-
-            var Researcher = await _context.Researcher.FindAsync(id);
-            if (Researcher == null)
+            try
             {
-                return NotFound();
+                var str_id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+                var id = Guid.Parse(str_id);
+
+                var Researcher = await _context.Researcher.FindAsync(id);
+                if (Researcher == null)
+                {
+                    return NotFound();
+                }
+
+                _context.Researcher.Remove(Researcher);
+                await _context.SaveChangesAsync();
+
+                return Researcher;
             }
-
-            _context.Researcher.Remove(Researcher);
-            await _context.SaveChangesAsync();
-
-            return Researcher;
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         private bool ResearcherExists(Guid id)
         {
-            return _context.Researcher.Any(e => e.Id == id);
+            try
+            {
+                return _context.Researcher.Any(e => e.Id == id);
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
     }
 }

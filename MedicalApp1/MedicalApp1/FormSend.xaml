@@ -4,8 +4,8 @@
              x:Class="MedicalApp1.FormSend">
   <ContentPage.Content>
       <StackLayout>
-          <Label Text="gj dude" />
-          <Button Text="Send One More Form" Clicked="ReturnToFormPage" />
+            <Label Margin ="20" HorizontalOptions="Center" Text="Спасибо за отправку!" FontSize="Large" />
+            <Button HorizontalOptions="Center" Text="Отправить еще раз" Clicked="ReturnToFormPage"/>
         </StackLayout>
   </ContentPage.Content>
 </ContentPage>

@@ -4,21 +4,21 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Data Points</h1>
-    <table style="width:100%; border:1px solid black;">
+    <h1 class="display-4">Отправки</h1>
+    <table style="width:100%; border:1px solid black; font-size:10px">
         <tr>
-            <td>Date</td>
-            <td>Heartbeat</td>
-            <td>Temperature</td>
-            <td>Distal Pressure</td>
-            <td>Sistal Pressure</td>
-            <td>Cough</td>
-            <td>Headache</td>
-            <td>Dizzines</td>
-            <td>Nausea</td>
-            <td>Rheum</td>
-            <td>Weakness</td>
-            <td>Self Feeling</td>
+            <th>Дата</th>
+            <th>Пульс</th>
+            <th>Температура</th>
+            <th>Диастолическое давление</th>
+            <th>Систолическое давление</th>
+            <th>Кашель</th>
+            <th>Головная боль</th>
+            <th>Головокружение</th>
+            <th>Насморк</th>
+            <th>Тошнота</th>
+            <th>Слабость</th>
+            <th>Самочувствие</th>
         </tr>
         @foreach (var point in model.Item1)
         {
@@ -28,34 +28,34 @@
                 <td>@point.Temperature</td>
                 <td>@point.DistalPressure</td>
                 <td>@point.SistalPressure</td>
-                <td>@point.Cough</td>
-                <td>@point.Headache</td>
-                <td>@point.Dizziness</td>
-                <td>@point.Nausea</td>
-                <td>@point.Rheum</td>
-                <td>@point.Weakness</td>
+                <td>@(point.Cough? "✔" : "❌")</td>
+                <td>@(point.Headache? "✔" : "❌")</td>
+                <td>@(point.Dizziness? "✔" : "❌")</td>
+                <td>@(point.Nausea? "✔" : "❌")</td>
+                <td>@(point.Rheum? "✔" : "❌")</td>
+                <td>@(point.Weakness? "✔" : "❌")</td>
                 <td>@point.SelfFeeling</td>
             </tr>
         }
     </table>
-    <a href="/Participant/DownloadById/@(model.Item2)">Download CSV</a>
-    <h2>Analysis</h2>
-    <table border= "1">
+    <a href="/Participant/DownloadById/@(model.Item2)">Скачать отправки этого участника</a>
+    <h2 hidden="@(model.Item5)" style="margin-top:50px">Анализ</h2>
+    <table border= "1" hidden="@(model.Item5)">
         <tr>
-            <td></td>
-            <td>Temperature</td>
-            <td>Heart Beat</td>
-            <td>Distal Pressure</td>
-            <td>Sistal Pressure</td>
-            <td>Self Feeling</td>
+            <th></th>
+            <th>Температура</th>
+            <th>Пульс</th>
+            <th>Диастолическое давление</th>
+            <th>Систолическое давление</th>
+            <th>Самочувствие</th>
         </tr>
         @for (int i = 0; i < 4; i++)
         {
             <tr>
-                <td>@(model.Item4[i])</td>
+                <th>@(model.Item4[i])</th>
                 @for (int j = 0; j < 5; j++)
                 {
-                    <td>@(model.Item3[i][j])</td>
+                    <td>@(Math.Round(model.Item3[i][j], 2))</td>
                 }
             </tr>
         }

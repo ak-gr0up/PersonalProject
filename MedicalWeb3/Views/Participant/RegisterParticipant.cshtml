@@ -4,26 +4,26 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Register Participant</h1>
+    <h1 class="display-4">Зарегистрировать нового участника</h1>
 
     <form action="@Url.ActionLink(controller:"Participant", action: "RegisterParticipant")" method="post">
         <table style="width:100%;">
             <tr>
-                <td>Name</td>
+                <td>Имя</td>
                 <td>
                     <input type="text" name="Name" />
                 </td>
             </tr>
             <tr>
-                <td>Surname</td>
+                <td>Фамилия</td>
                 <td><input type="text" name="Surname" /></td>
             </tr>
             <tr>
-                <td>Gender</td>
+                <td>Пол</td>
                 <td><input type="text" name="Gender" /></td>
             </tr>
             <tr>
-                <td>Login</td>
+                <td>Номер телефона</td>
                 <td><input type="text" name="Login" /></td>
             </tr>
         </table>

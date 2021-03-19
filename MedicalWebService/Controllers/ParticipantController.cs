@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MedicalWebService.Data;
 using MedicalWebService.Model;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace MedicalWebService.Controllers
 {
@@ -16,10 +17,12 @@ namespace MedicalWebService.Controllers
     public class ParticipantController : ControllerBase
     {
         private readonly MedicalWebServiceContext _context;
+        private readonly ILogger<ParticipantController> _logger;
 
-        public ParticipantController(MedicalWebServiceContext context)
+        public ParticipantController(MedicalWebServiceContext context, ILogger<ParticipantController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Participant
@@ -27,9 +30,17 @@ namespace MedicalWebService.Controllers
         [Authorize(Roles = "Researcher")]
         public async Task<ActionResult<IEnumerable<Participant>>> GetParticipant()
         {
-            var id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
-            var guid = Guid.Parse(id);
-            return await _context.Participant.Where(p => p.ResearcherId==guid).ToListAsync();
+            try
+            {
+                var id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+                var guid = Guid.Parse(id);
+                return await _context.Participant.Where(p => p.ResearcherId == guid).ToListAsync();
+            }
+            catch(Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         // GET: api/Participant/me
@@ -37,22 +48,38 @@ namespace MedicalWebService.Controllers
         [Authorize(Roles = "Participant")]
         public async Task<ActionResult<Participant>> GetParticipantMe()
         {
-            Guid id = GetResearcherId();
-            var Participant = await _context.Participant.FindAsync(id);
-
-            if (Participant == null)
+            try
             {
-                return NotFound();
-            }
+                Guid id = GetResearcherId();
+                var Participant = await _context.Participant.FindAsync(id);
 
-            return Participant;
+                if (Participant == null)
+                {
+                    return NotFound();
+                }
+
+                return Participant;
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         private Guid GetResearcherId()
         {
-            var id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
-            var guid = Guid.Parse(id);
-            return guid;
+            try
+            {
+                var id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+                var guid = Guid.Parse(id);
+                return guid;
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         // PUT: api/Participant/5
@@ -73,7 +100,7 @@ namespace MedicalWebService.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception x)
             {
                 if (!ParticipantExists(id))
                 {
@@ -81,6 +108,7 @@ namespace MedicalWebService.Controllers
                 }
                 else
                 {
+                    _logger.LogInformation(x.ToString());
                     throw;
                 }
             }
@@ -95,13 +123,21 @@ namespace MedicalWebService.Controllers
         [Authorize(Roles = "Researcher")]
         public async Task<ActionResult<Participant>> PostParticipant(Participant participant)
         {
-            _context.Participant.Add(participant);
-            if (participant.Id == Guid.Empty)
-                participant.Id = Guid.NewGuid();
-            participant.ResearcherId = GetResearcherId();
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Participant.Add(participant);
+                if (participant.Id == Guid.Empty)
+                    participant.Id = Guid.NewGuid();
+                participant.ResearcherId = GetResearcherId();
+                await _context.SaveChangesAsync();
 
-            return participant;
+                return participant;
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         // DELETE: api/Participant/5
@@ -109,22 +145,38 @@ namespace MedicalWebService.Controllers
         [Authorize(Roles = "Researcher")]
         public async Task<ActionResult<Participant>> DeleteParticipant(Guid id)
         {
-            var participant = await _context.Participant.FindAsync(id);
-            if (participant == null)
+            try
             {
-                return NotFound();
+                var participant = await _context.Participant.FindAsync(id);
+                if (participant == null)
+                {
+                    return NotFound();
+                }
+
+                _context.Participant.Remove(participant);
+                await _context.SaveChangesAsync();
+
+                return participant;
             }
-
-            _context.Participant.Remove(participant);
-            await _context.SaveChangesAsync();
-
-            return participant;
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         [Authorize(Roles = "Researcher")]
         private bool ParticipantExists(Guid id)
         {
-            return _context.Participant.Any(e => e.Id == id);
+            try
+            {
+                return _context.Participant.Any(e => e.Id == id);
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
     }
 }

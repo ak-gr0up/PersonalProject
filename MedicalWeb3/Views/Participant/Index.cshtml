@@ -1,17 +1,18 @@
 ﻿@{
-    ViewData["Title"] = "Participants";
+    ViewData["Title"] = "Участники";
     var model = Model; //as Tuple<List<MedicalClient.Participant>, List<List<int>>, List<string>>;
 }
+<head><link rel="stylesheet" href="~/css/site.css"></head>
 
 <div class="text-center">
-    <h1 class="display-4">Participants</h1>
+    <h1 class="display-4">Участники</h1>
     <table style="width:100%; border:1px solid black;">
         <tr>
-            <td>Name</td>
-            <td>Surname</td>
-            <td>Gender</td>
-            <td>BirthDate</td>
-            <td>Login</td>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Пол</th>
+            <th>Дата рождения</th>
+            <th>Логин</th>
         </tr>
         @foreach (var user in model.Item1)
         {
@@ -24,27 +25,27 @@
             </tr>
         }
     </table>
-    <a href="/Participant/DownloadAll">Download overall csv</a>
-    <h2>Analysis</h2>
-    <table border="1">
+    <a href="/Participant/DownloadAll">Скачать отправки по всем участникам</a>
+    <h2 hidden="@(model.Item4)" style="margin-top:50px">Анализ</h2>
+    <table border="1" hidden="@(model.Item4)">
         <tr>
-            <td></td>
-            <td>Temperature</td>
-            <td>Heart Beat</td>
-            <td>Distal Pressure</td>
-            <td>Sistal Pressure</td>
-            <td>Self Feeling</td>
+            <th></th>
+            <th>Температура</th>
+            <th>Пульс</th>
+            <th>Диастолическое давление</th>
+            <th>Систолическое давление</th>
+            <th>Самочувствие</th>
         </tr>
         @for (int i = 0; i < 4; i++)
         {
-    <tr>
-        <td>@(model.Item3[i])</td>
-        @for(int j = 0; j < 5; j++)
-        {
-            <td>@(model.Item2[i][j])</td>
-        }
-    </tr>
+            <tr>
+                <th>@(model.Item3[i])</th>
+                @for (int j = 0; j < 5; j++)
+                {
+                    <td>@(Math.Round(model.Item2[i][j], 2))</td>
+                }
+            </tr>
         }
     </table>
-    
+
 </div>

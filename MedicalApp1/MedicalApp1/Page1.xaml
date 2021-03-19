@@ -4,18 +4,19 @@
              x:Class="MedicalApp1.Page1">
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="hearthbeat" Placeholder="Hearth Beat" />
-            <Entry x:Name="temperature" Placeholder ="Temperature" />
-            <Entry x:Name="distal_pressure" Placeholder ="Distal Pressure" />
-            <Entry x:Name="sistal_pressure" Placeholder="Sistal Pressure" />
-            <Label Text="Headache" /><CheckBox x:Name="headache"/>
-            <Label Text="Dizziness" /><CheckBox x:Name="Dizziness"/>
-            <Label Text="Cough" /><CheckBox x:Name="cough"/>
-            <Label Text="Rheum" /><CheckBox x:Name="rheum"/>
-            <Label Text="Weakness" /><CheckBox x:Name="weakness"/>
-            <Label Text="Nausea" /><CheckBox x:Name="nausea"/>
-            <Entry x:Name="self_feeling" Placeholder ="Self Feeling" />
-            <Button Text="Done" Clicked="OnDoneClicked" />
+            <Entry x:Name="hearthbeat" Placeholder="Пульс" />
+            <Entry x:Name="temperature" Placeholder ="Температура тела" />
+            <Entry x:Name="distal_pressure" Placeholder ="Диастолическое давление" />
+            <Entry x:Name="sistal_pressure" Placeholder="Систолическое давление" />
+            <Label Text="Головная боль" /><CheckBox x:Name="headache"/>
+            <Label Text="Головокружение" /><CheckBox x:Name="Dizziness"/>
+            <Label Text="Кашель" /><CheckBox x:Name="cough"/>
+            <Label Text="Насморк" /><CheckBox x:Name="rheum"/>
+            <Label Text="Слабость" /><CheckBox x:Name="weakness"/>
+            <Label Text="Тошнота" />
+            <CheckBox x:Name="nausea"/>
+            <Entry x:Name="self_feeling" Placeholder ="Самочувствие (от 1 до 10)" />
+            <Button Text="Отправить" Clicked="OnDoneClicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

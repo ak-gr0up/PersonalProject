@@ -4,8 +4,8 @@
              x:Class="MedicalApp1.MainPage">
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="username" Placeholder ="Phone number" />
-            <Button Text="Login" Clicked="OnLoginClicked" />
+            <Entry VerticalOptions="Center" x:Name="username" Placeholder ="Номер телефона" />
+            <Button VerticalOptions="Center" Text="Войти" Clicked="OnLoginClicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

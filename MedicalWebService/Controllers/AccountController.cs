@@ -8,105 +8,141 @@ using System.Security.Claims;
 using MedicalWebService.Model;
 using MedicalWebService.Controllers;
 using MedicalWebService.Data;
+using Microsoft.Extensions.Logging;
 
 namespace TokenApp.Controllers
 {
     public class AccountController : Controller
     {
         private readonly MedicalWebServiceContext _context;
+        private readonly ILogger<AccountController> _logger;
 
-        public AccountController(MedicalWebServiceContext context)
+        public AccountController(MedicalWebServiceContext context, ILogger<AccountController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [HttpPost("/tokenResearcher")]
         public ActionResult<string> Token(string username, string password)
         {
-            var identity = GetResearcherIdentity(username, password);
-            if (identity == null)
+            try
             {
-                return BadRequest(new { errorText = "Invalid username or password." });
+                var identity = GetResearcherIdentity(username, password);
+                if (identity == null)
+                {
+                    return BadRequest(new { errorText = "Invalid username or password." });
+                }
+
+                var now = DateTime.UtcNow;
+                // создаем JWT-токен
+                var jwt = new JwtSecurityToken(
+                        issuer: AuthOptions.ISSUER,
+                        audience: AuthOptions.AUDIENCE,
+                        notBefore: now,
+                        claims: identity.Claims,
+                        expires: now.Add(TimeSpan.FromDays(AuthOptions.LIFETIME)),
+                        signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+                var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+
+                return Ok(encodedJwt);
             }
-
-            var now = DateTime.UtcNow;
-            // создаем JWT-токен
-            var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    notBefore: now,
-                    claims: identity.Claims,
-                    expires: now.Add(TimeSpan.FromDays(AuthOptions.LIFETIME)),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            return Ok(encodedJwt);
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         private ClaimsIdentity GetResearcherIdentity(string username, string password)
         {
-            Researcher Researcher = _context.Researcher.FirstOrDefault(p => p.Login == username && p.Password == password);
-            if (Researcher != null) {
-                var claims = new List<Claim>
+            try
+            {
+                Researcher Researcher = _context.Researcher.FirstOrDefault(p => p.Login == username && p.Password == password);
+                if (Researcher != null)
+                {
+                    var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, Researcher.Name),
                     new Claim("id", Researcher.Id.ToString()),
                     new Claim(ClaimsIdentity.DefaultRoleClaimType, "Researcher")
 
                 };
-                ClaimsIdentity claimsIdentity =
-                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
-                return claimsIdentity;
-            }
+                    ClaimsIdentity claimsIdentity =
+                    new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
+                        ClaimsIdentity.DefaultRoleClaimType);
+                    return claimsIdentity;
+                }
 
-            // если пользователя не найдено
-            return null;
+                // если пользователя не найдено
+                return null;
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         [HttpPost("/tokenParticipant")]
         public ActionResult<string> TokenParticipant(string username)
         {
-            var identity = GetParticipantIdentity(username);
-            if (identity == null)
+            try
             {
-                return BadRequest(new { errorText = "Invalid username." });
+                var identity = GetParticipantIdentity(username);
+                if (identity == null)
+                {
+                    return BadRequest(new { errorText = "Invalid username." });
+                }
+
+                var now = DateTime.UtcNow;
+                // создаем JWT-токен
+                var jwt = new JwtSecurityToken(
+                        issuer: AuthOptions.ISSUER,
+                        audience: AuthOptions.AUDIENCE,
+                        notBefore: now,
+                        claims: identity.Claims,
+                        expires: now.Add(TimeSpan.FromSeconds(AuthOptions.LIFETIME)),
+                        signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+                var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+
+                return Ok(encodedJwt);
             }
-
-            var now = DateTime.UtcNow;
-            // создаем JWT-токен
-            var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    notBefore: now,
-                    claims: identity.Claims,
-                    expires: now.Add(TimeSpan.FromSeconds(AuthOptions.LIFETIME)),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            return Ok(encodedJwt);
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         private ClaimsIdentity GetParticipantIdentity(string username)
         {
-            Participant Participant = _context.Participant.FirstOrDefault(p => p.Login == username);
-            if (Participant != null)
+            try
             {
-                var claims = new List<Claim>
+                Participant Participant = _context.Participant.FirstOrDefault(p => p.Login == username);
+                if (Participant != null)
+                {
+                    var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, Participant.Name),
                     new Claim("id", Participant.Id.ToString()),
                     new Claim(ClaimsIdentity.DefaultRoleClaimType, "Participant")
 
                 };
-                ClaimsIdentity claimsIdentity =
-                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
-                return claimsIdentity;
-            }
+                    ClaimsIdentity claimsIdentity =
+                    new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
+                        ClaimsIdentity.DefaultRoleClaimType);
+                    return claimsIdentity;
+                }
 
-            // если пользователя не найдено
-            return null;
+                // если пользователя не найдено
+                return null;
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
     }

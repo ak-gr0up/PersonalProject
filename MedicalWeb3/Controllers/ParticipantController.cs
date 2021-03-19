@@ -58,7 +58,7 @@ namespace MedicalWeb3.Controllers
                 var data = await api2.GetDataPointAllAsync();
                 var res = CountValues(data);
 
-                var model = Tuple.Create(await api.GetParticipantAsync(), res, new List<string> { "Average", "Dispersion", "Minimal", "Maximal" });
+                var model = Tuple.Create(await api.GetParticipantAsync(), res, new List<string> { "Среднее", "Дисперсия", "Минимум", "Максимум" }, (bool)(data.ToArray().Length == 0));
 
                 return View(model);
             }
@@ -107,7 +107,7 @@ namespace MedicalWeb3.Controllers
                 DataPointClient api = new DataPointClient(Request.Cookies["token"]);
                 var data = await api.GetDataPointAsync(guid);
                 var res = CountValues(data);
-                var model = Tuple.Create(data, id, res, new List<string>{ "Average", "Dispersion", "Minimal", "Maximal"});
+                var model = Tuple.Create(data, id, res, new List<string> { "Среднее", "Дисперсия", "Минимум", "Максимум" }, data.ToArray().Length == 0);
             
                 return View("ViewDataPoints", model);
             }

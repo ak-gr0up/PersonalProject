@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace MedicalWebService.Controllers
 {
@@ -17,26 +18,43 @@ namespace MedicalWebService.Controllers
     public class DataPointController : ControllerBase
     {
         private readonly MedicalWebServiceContext _context;
+        private readonly ILogger<DataPointController> _logger;
 
-        public DataPointController(MedicalWebServiceContext context)
+        public DataPointController(MedicalWebServiceContext context, ILogger<DataPointController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [HttpGet]
         [Authorize(Roles = "Researcher")]
         public async Task<ActionResult<IEnumerable<DataPoint>>> GetDataPoint(Guid id)
-        { 
-            return await _context.DataPoint.Where(p => p.ParticipantId == id).ToListAsync();
+        {
+            try
+            {
+                return await _context.DataPoint.Where(p => p.ParticipantId == id).ToListAsync();
+            }
+            catch(Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         [HttpGet("/all")]
         [Authorize(Roles = "Researcher")]
         public async Task<ActionResult<IEnumerable<DataPoint>>> GetDataPointAll()
         {
-            var id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
-            var guid = Guid.Parse(id);
-            return await _context.DataPoint.Where(p => p.ResearcherId == guid).ToListAsync();
+            try {
+                var id = HttpContext.User.Claims.FirstOrDefault(p => p.Type == "id")?.Value;
+                var guid = Guid.Parse(id);
+                return await _context.DataPoint.Where(p => p.ResearcherId == guid).ToListAsync();
+            }
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
         [HttpPost]
@@ -54,9 +72,10 @@ namespace MedicalWebService.Controllers
 
                 return data;
             }
-            catch
+            catch(Exception x)
             {
-                return null;
+            _logger.LogInformation(x.ToString());
+            throw;
             }
         }
 
@@ -64,16 +83,24 @@ namespace MedicalWebService.Controllers
         [Authorize(Roles = "Researcher")]
         public async Task<ActionResult<DataPoint>> DeleteParticipant(Guid id)
         {
-            var data = await _context.DataPoint.FindAsync(id);
-            if (data == null)
+            try
             {
-                return NotFound();
+                var data = await _context.DataPoint.FindAsync(id);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+
+                _context.DataPoint.Remove(data);
+                await _context.SaveChangesAsync();
+
+                return data;
             }
-
-            _context.DataPoint.Remove(data);
-            await _context.SaveChangesAsync();
-
-            return data;
+            catch (Exception x)
+            {
+                _logger.LogInformation(x.ToString());
+                throw;
+            }
         }
 
     }
