@@ -1,9 +1,0 @@
-C:\Users\Dima\source\project\MedicalClient\bin\Debug\netstandard2.0\MedicalClient.deps.json
-C:\Users\Dima\source\project\MedicalClient\bin\Debug\netstandard2.0\MedicalClient.dll
-C:\Users\Dima\source\project\MedicalClient\bin\Debug\netstandard2.0\MedicalClient.pdb
-C:\Users\Dima\source\project\MedicalClient\obj\Debug\netstandard2.0\MedicalClient.AssemblyInfoInputs.cache
-C:\Users\Dima\source\project\MedicalClient\obj\Debug\netstandard2.0\MedicalClient.AssemblyInfo.cs
-C:\Users\Dima\source\project\MedicalClient\obj\Debug\netstandard2.0\MedicalClient.dll
-C:\Users\Dima\source\project\MedicalClient\obj\Debug\netstandard2.0\MedicalClient.pdb
-C:\Users\Dima\source\project\MedicalClient\obj\Debug\netstandard2.0\MedicalClient.csproj.CoreCompileInputs.cache
-C:\Users\Dima\source\project\MedicalClient\obj\Debug\netstandard2.0\MedicalClient.csprojAssemblyReference.cache

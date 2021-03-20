@@ -37,7 +37,7 @@ namespace Tests
             var mockContext = new Mock<MedicalWebServiceContext>();
             mockContext.Setup(m => m.Researcher).Returns(mockSet.Object);
 
-            var controller = new AccountController(mockContext.Object);
+            var controller = new AccountController(mockContext.Object, null);
             
             //test invalid logon
             var tokenFail = controller.Token("aa", "aa");
