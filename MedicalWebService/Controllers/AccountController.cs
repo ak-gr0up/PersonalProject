@@ -49,7 +49,7 @@ namespace TokenApp.Controllers
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
@@ -79,7 +79,7 @@ namespace TokenApp.Controllers
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
@@ -110,7 +110,7 @@ namespace TokenApp.Controllers
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
@@ -140,7 +140,7 @@ namespace TokenApp.Controllers
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }

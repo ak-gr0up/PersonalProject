@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
+
 namespace MedicalWebService.Controllers
 {
     [Route("api/[controller]")]
@@ -36,7 +37,7 @@ namespace MedicalWebService.Controllers
             }
             catch(Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
@@ -52,7 +53,7 @@ namespace MedicalWebService.Controllers
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
@@ -74,8 +75,8 @@ namespace MedicalWebService.Controllers
             }
             catch(Exception x)
             {
-            _logger.LogInformation(x.ToString());
-            throw;
+                _logger.LogError(x, "error");
+                throw;
             }
         }
 
@@ -98,7 +99,7 @@ namespace MedicalWebService.Controllers
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }

@@ -2,4 +2,6 @@
 # Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
 ################################################################################
 
-/MedicalApp1/MedicalApp1/obj
+bin
+obj
+package

@@ -38,7 +38,7 @@ namespace MedicalWebService.Controllers
             }
             catch(Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
@@ -58,11 +58,11 @@ namespace MedicalWebService.Controllers
                     return NotFound();
                 }
 
-                return Participant;
+                return Ok(Participant);
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
@@ -77,7 +77,7 @@ namespace MedicalWebService.Controllers
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
@@ -108,7 +108,7 @@ namespace MedicalWebService.Controllers
                 }
                 else
                 {
-                    _logger.LogInformation(x.ToString());
+                    _logger.LogError(x.ToString());
                     throw;
                 }
             }
@@ -135,7 +135,7 @@ namespace MedicalWebService.Controllers
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
@@ -160,7 +160,7 @@ namespace MedicalWebService.Controllers
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
@@ -174,7 +174,7 @@ namespace MedicalWebService.Controllers
             }
             catch (Exception x)
             {
-                _logger.LogInformation(x.ToString());
+                _logger.LogError(x.ToString());
                 throw;
             }
         }
